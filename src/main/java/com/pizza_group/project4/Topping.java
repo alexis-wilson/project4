@@ -10,6 +10,10 @@ public enum Topping {
     PROVOLONE,
     CHEDDAR,
     BEEF,
+    PINNEAPPLE,
+    BLACKOLIVES,
+    SPINACH,
+    BACON,
     HAM;
 
     public Topping getTopping(String topping) {

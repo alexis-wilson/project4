@@ -1,4 +1,39 @@
 package com.pizza_group.project4;
 
-public class Meatzza extends Pizza{
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class Meatzza extends Pizza {
+    private final double meatzzaPrice;
+    private static final ArrayList<Topping> toppings = new ArrayList<>(Arrays.asList(Topping.SAUSAGE, Topping.PEPPERONI, Topping.BEEF, Topping.HAM));
+    public Meatzza(Size size, Crust crust) {
+        super(toppings, crust, size);
+        this.meatzzaPrice = setBBQPrice(size);
+    }
+
+    public double setBBQPrice(Size size) {
+        if (size.equals(Size.SMALL))  {
+            return 15.99;
+        }
+        if (size.equals(Size.MEDIUM)) {
+            return 17.99;
+        }
+        return 19.99;
+    }
+
+    @Override
+    public boolean add(Object obj) {
+        return false;
+    }
+
+    @Override
+    public boolean remove(Object obj) {
+        return false;
+    }
+
+
+    @Override
+    public double price() {
+        return this.meatzzaPrice;
+    }
 }
