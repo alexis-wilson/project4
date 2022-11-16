@@ -10,7 +10,7 @@ public enum Topping {
     PROVOLONE,
     CHEDDAR,
     BEEF,
-    PINNEAPPLE,
+    PINEAPPLE,
     BLACKOLIVES,
     SPINACH,
     BACON,
@@ -19,7 +19,9 @@ public enum Topping {
     public Topping getTopping(String topping) {
         for (Topping i : Topping.values()) {
             if (topping.equals(i.name())) {
+                return i;
             }
         }
+        return null;
     }
 }

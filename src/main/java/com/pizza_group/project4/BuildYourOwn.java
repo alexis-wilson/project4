@@ -9,6 +9,10 @@ public class BuildYourOwn extends Pizza implements Customizable {
         super(toppings, crust, size);
         this.BYOPrice = setBYOPrice(size);
     }
+    public BuildYourOwn(Crust crust) {
+        super(toppings, crust, Size.SMALL);
+        this.BYOPrice = setBYOPrice(Size.SMALL);
+    }
 
     public double setBYOPrice(Size size) {
         if (size.equals(Size.SMALL))  {

@@ -10,7 +10,10 @@ public class BBQChicken extends Pizza {
         super(toppings, crust, size);
         this.BBQPrice = setBBQPrice(size);
     }
-
+    public BBQChicken(Crust crust) {
+        super(toppings, crust, Size.SMALL);
+        this.BBQPrice = setBBQPrice(Size.SMALL);
+    }
     public double setBBQPrice(Size size) {
         if (size.equals(Size.SMALL))  {
             return 13.99;

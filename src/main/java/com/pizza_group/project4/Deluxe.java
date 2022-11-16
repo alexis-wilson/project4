@@ -10,6 +10,10 @@ public class Deluxe extends Pizza {
         super(toppings, crust, size);
         this.deluxePrice = setDeluxePrice(size);
     }
+    public Deluxe(Crust crust) { //default constructor; can change size later. for purposing of making a pizza w/o info
+        super(toppings, crust, Size.SMALL);
+        this.deluxePrice = setDeluxePrice(Size.SMALL);
+    }
 
     public double setDeluxePrice(Size size) {
         if (size.equals(Size.SMALL))  {
