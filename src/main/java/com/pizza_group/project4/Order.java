@@ -32,4 +32,8 @@ public class Order implements Customizable {
         for (Pizza item : orderListView) total += item.price();
         return total;
     }
+
+    public ObservableList<Pizza> getOrder() {
+        return orderListView;
+    }
 }
