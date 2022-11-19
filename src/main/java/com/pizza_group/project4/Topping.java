@@ -1,5 +1,8 @@
 package com.pizza_group.project4;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public enum Topping {
     SAUSAGE,
     PEPPERONI,
@@ -23,5 +26,15 @@ public enum Topping {
             }
         }
         return null;
+    }
+    public ObservableList getAllToppings() {
+        ObservableList<String> items = FXCollections.observableArrayList ();
+        for(Topping i : Topping.values()) {
+            items.add(i.name());
+        }
+        return items;
+    }
+    public String toString() {
+        return name();
     }
 }

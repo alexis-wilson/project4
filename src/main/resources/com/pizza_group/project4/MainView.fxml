@@ -36,7 +36,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="newYorkPizzaSelection" contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="256.0" prefWidth="651.0" text="New York Pizza Style">
+            <Button fx:id="newYorkPizzaSelection" contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false" onAction="#openNewPizza" prefHeight="256.0" prefWidth="651.0" text="New York Pizza Style">
                <graphic>
                   <ImageView fitHeight="213.0" fitWidth="304.0" pickOnBounds="true" preserveRatio="true">
                      <image>

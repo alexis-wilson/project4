@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="623.0" prefWidth="834.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pizza_group.project4.NYStylePizzaOrderingView">
+<AnchorPane prefHeight="623.0" prefWidth="834.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pizza_group.project4.ChicagoStylePizzaOrderingView">
    <children>
       <Text layoutX="37.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chicago Style Pizza" wrappingWidth="439.13671875">
          <font>

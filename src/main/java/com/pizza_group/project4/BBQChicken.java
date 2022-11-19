@@ -23,6 +23,9 @@ public class BBQChicken extends Pizza {
         }
         return 17.99;
     }
+    public ArrayList<Topping> getToppings(){
+        return toppings;
+    }
 
     @Override
     public boolean add(Object obj) {

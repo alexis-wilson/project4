@@ -8,13 +8,13 @@ public class Meatzza extends Pizza {
     private static final ArrayList<Topping> toppings = new ArrayList<>(Arrays.asList(Topping.SAUSAGE, Topping.PEPPERONI, Topping.BEEF, Topping.HAM));
     public Meatzza(Size size, Crust crust) {
         super(toppings, crust, size);
-        this.meatzzaPrice = setBBQPrice(size);
+        this.meatzzaPrice = setMeatzzaPrice(size);
     }
     public Meatzza(Crust crust) {
         super(toppings, crust, Size.SMALL);
-        this.meatzzaPrice = setBBQPrice(Size.SMALL);
+        this.meatzzaPrice = setMeatzzaPrice(Size.SMALL);
     }
-    public double setBBQPrice(Size size) {
+    public double setMeatzzaPrice(Size size) {
         if (size.equals(Size.SMALL))  {
             return 15.99;
         }

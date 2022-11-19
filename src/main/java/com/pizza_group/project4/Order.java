@@ -7,7 +7,8 @@ public class Order implements Customizable {
     public static final double SALES_TAX = 0.06625;
 
     private ObservableList<Pizza> orderListView;
-
+    Order()  {
+    }
 
     @Override
     public boolean add(Object obj) {

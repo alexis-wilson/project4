@@ -12,4 +12,16 @@ public abstract class Pizza implements Customizable {
         this.size = size;
         this.crust = crust;
     }
+    public void setSizeToMedium() {
+        size = Size.MEDIUM;
+    }
+    public void setSizeToLarge() {
+        size = Size.LARGE;
+    }
+    public void setSizeToSmall() {
+        size = Size.SMALL;
+    }
+    public Size getSize(){
+        return size;
+    }
 }

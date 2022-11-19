@@ -12,15 +12,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="623.0" prefWidth="834.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pizza_group.project4.NYStylePizzaOrderingView">
+<AnchorPane prefHeight="700" prefWidth="700" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pizza_group.project4.NYStylePizzaController">
    <children>
       <Text layoutX="37.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New York Style Pizza" wrappingWidth="439.13671875">
          <font>
             <Font name="Britannic Bold" size="48.0" />
          </font>
       </Text>
-      <ComboBox fx:id="pizzaFlavors" layoutX="65.0" layoutY="133.0" prefHeight="31.0" prefWidth="192.0" />
+      <ComboBox fx:id="pizzaFlavors" layoutX="65.0" layoutY="133.0" onAction="#switchFlavors" prefHeight="31.0" prefWidth="192.0" />
       <Text layoutX="65.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pick a pizza flavor:" wrappingWidth="154.396484375">
          <font>
             <Font size="18.0" />
@@ -31,7 +30,7 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <RadioButton fx:id="smallPizza" layoutX="65.0" layoutY="211.0" mnemonicParsing="false" selected="true" text="Small">
+      <RadioButton fx:id="smallPizza" layoutX="65.0" layoutY="211.0" mnemonicParsing="false" onAction="#changeSizeToSmall" selected="true" text="Small">
          <font>
             <Font size="14.0" />
          </font>
@@ -39,12 +38,12 @@
             <ToggleGroup fx:id="pizzaSizeSelection" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="mediumPizza" layoutX="134.0" layoutY="211.0" mnemonicParsing="false" text="Medium" toggleGroup="$pizzaSizeSelection">
+      <RadioButton fx:id="mediumPizza" layoutX="134.0" layoutY="211.0" mnemonicParsing="false" onAction="#changeSizeToMedium" text="Medium" toggleGroup="$pizzaSizeSelection">
          <font>
             <Font size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="largePizza" layoutX="219.0" layoutY="211.0" mnemonicParsing="false" text="Large" toggleGroup="$pizzaSizeSelection">
+      <RadioButton fx:id="largePizza" layoutX="219.0" layoutY="211.0" mnemonicParsing="false" onAction="#changeSizeToLarge" text="Large" toggleGroup="$pizzaSizeSelection">
          <font>
             <Font size="14.0" />
          </font>
@@ -60,18 +59,18 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <ListView layoutX="72.0" layoutY="329.0" prefHeight="202.0" prefWidth="231.0" />
-      <Button layoutX="329.0" layoutY="394.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="88.0" text="&gt;&gt;&gt;&gt;">
+      <ListView fx:id="availableToppings" layoutX="72.0" layoutY="329.0" prefHeight="202.0" prefWidth="231.0" />
+      <Button fx:id="addToppingButton" layoutX="329.0" layoutY="387.0" mnemonicParsing="false" onMouseClicked="#addToppings" prefHeight="31.0" prefWidth="88.0" text="&gt;&gt;&gt;&gt;">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="329.0" layoutY="445.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="88.0" text="&lt;&lt;&lt;&lt;">
+      <Button fx:id="removeSelectedTopping" layoutX="329.0" layoutY="445.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="88.0" text="&lt;&lt;&lt;&lt;">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <ListView layoutX="459.0" layoutY="329.0" prefHeight="202.0" prefWidth="231.0" />
+      <ListView fx:id="selectedToppings" layoutX="459.0" layoutY="329.0" prefHeight="202.0" prefWidth="231.0" />
       <Text layoutX="459.0" layoutY="318.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selected Toppings:" textAlignment="CENTER" wrappingWidth="231.0">
          <font>
             <Font size="18.0" />
@@ -88,6 +87,6 @@
          </font>
       </Text>
       <TextField fx:id="pizzaPriceOutput" layoutX="175.0" layoutY="552.0" prefHeight="25.0" prefWidth="127.0" />
-      <Button layoutX="459.0" layoutY="552.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="231.0" text="Add to Order" />
+      <Button fx:id="addPizzaToOrder" layoutX="459.0" layoutY="552.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="231.0" text="Add to Order" />
    </children>
 </AnchorPane>
