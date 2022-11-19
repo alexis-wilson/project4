@@ -3,7 +3,7 @@ package com.pizza_group.project4;
 public class NYPizza implements PizzaFactory{
 
     public Pizza createDeluxe() {
-        Pizza deluxePizza = new Deluxe(Crust.BROOKLYN);
+        Pizza deluxePizza = new Deluxe( Crust.BROOKLYN);
         return deluxePizza;
     }
     public Pizza createBBQChicken() {
