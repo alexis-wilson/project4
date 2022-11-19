@@ -23,20 +23,26 @@ public class BuildYourOwn extends Pizza implements Customizable {
 
     private double toppingsPrice() {
         double total = 0;
-        while (toppings.iterator().hasNext()) {
+        int counter = 0;
+        System.out.println(toppings.size());
+        while (counter < toppings.size()) {
             total += 1.59;
+            counter++;
         }
         return total;
     }
 
     @Override
-    public boolean add(Object obj) {
-        if (obj instanceof Topping) {
-            Topping addedTop = (Topping) obj;
-            toppings.add(addedTop);
-            return true;
+    public boolean add(Object obj)
+    {
+        if(!(obj instanceof Topping))
+        {
+            return false;
         }
-        return false;
+
+        Topping top = (Topping)obj;
+        toppings.add(top);
+        return true;
     }
 
     @Override

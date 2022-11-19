@@ -4,24 +4,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class BBQChicken extends Pizza {
-    private final double BBQPrice;
+    private double BBQPrice;
     private static final ArrayList<Topping> toppings = new ArrayList<>(Arrays.asList(Topping.BBQ_CHICKEN, Topping.GREEN_PEPPER, Topping.PROVOLONE, Topping.CHEDDAR));
-    public BBQChicken(Size size, Crust crust) {
-        super(toppings, crust, size);
-        this.BBQPrice = setBBQPrice(size);
-    }
     public BBQChicken(Crust crust) {
         super(toppings, crust, Size.SMALL);
         this.BBQPrice = setBBQPrice(Size.SMALL);
     }
     public double setBBQPrice(Size size) {
-        if (size.equals(Size.SMALL))  {
+        if (size.equals(Size.SMALL)) {
             return 13.99;
-        }
-        if (size.equals(Size.MEDIUM)) {
+        } else if (size.equals(Size.MEDIUM)) {
             return 15.99;
-        }
-        return 17.99;
+        } else if (size.equals(Size.LARGE)) {
+            return 17.99;
+        } return 0;
     }
     public ArrayList<Topping> getToppings(){
         return toppings;
@@ -40,6 +36,7 @@ public class BBQChicken extends Pizza {
 
     @Override
     public double price() {
-        return this.BBQPrice;
+       BBQPrice = setBBQPrice(getSize());
+       return BBQPrice;
     }
 }

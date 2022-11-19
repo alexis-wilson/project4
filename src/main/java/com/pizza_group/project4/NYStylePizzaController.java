@@ -2,8 +2,11 @@ package com.pizza_group.project4;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import java.util.Enumeration;
 
@@ -36,7 +39,7 @@ public class NYStylePizzaController {
     PizzaFactory pizza = new NYPizza();
     Pizza p;
     ObservableList<String> toppingList = FXCollections.observableArrayList();
-    int counter = 0;
+    private int counter = 0;
     public void initialize() {
         ObservableList<String> list = FXCollections.observableArrayList("Build Your Own", "BBQ Chicken", "Meatzza", "Deluxe");
         pizzaFlavors.setItems(list);
@@ -46,14 +49,19 @@ public class NYStylePizzaController {
         Topping obj = Topping.SPINACH;
         availableToppings.setItems(obj.getAllToppings());
         availableToppings.setDisable(false);
+        addToppingButton.setDisable(false);
+        removeSelectedTopping.setDisable(false);
         pizzaPriceOutput.setText(Double.toString(p.price()));
 
     }
     public void createMainController(MainController mainController){
         this.mainController = mainController;
+        initialize();
     }
-    public void switchFlavors() {
+    public void switchFlavors() { //break up later
         if(pizzaFlavors.getValue() == "Build Your Own") {
+            addToppingButton.setDisable(false);
+            removeSelectedTopping.setDisable(false);
             crustOutput.setText(Crust.HANDTOSSED.name());
             p = pizza.createBuildYourOwn();
             pizzaSizeSelection.selectToggle(smallPizza);
@@ -63,6 +71,8 @@ public class NYStylePizzaController {
             updatePriceOutput();
             //also need to change image for every change of flavor
         }else if(pizzaFlavors.getValue() == "BBQ Chicken") {
+            addToppingButton.setDisable(true);
+            removeSelectedTopping.setDisable(true);
             crustOutput.setText(Crust.THIN.name());
             p = pizza.createBBQChicken();
             pizzaSizeSelection.selectToggle(smallPizza);
@@ -72,6 +82,8 @@ public class NYStylePizzaController {
             availableToppings.setDisable(true);
             pizzaPriceOutput.setText(Double.toString(p.price()));
         }else if(pizzaFlavors.getValue() == "Meatzza") {
+            addToppingButton.setDisable(true);
+            removeSelectedTopping.setDisable(true);
             crustOutput.setText(Crust.HANDTOSSED.name());
             pizzaSizeSelection.selectToggle(smallPizza);
             p = pizza.createMeatzza();
@@ -81,6 +93,8 @@ public class NYStylePizzaController {
             availableToppings.setDisable(true);
             updatePriceOutput();
         }else if(pizzaFlavors.getValue() == "Deluxe") {
+            addToppingButton.setDisable(true);
+            removeSelectedTopping.setDisable(true);
             crustOutput.setText(Crust.BROOKLYN.name());
             pizzaSizeSelection.selectToggle(smallPizza);
             p = pizza.createDeluxe();
@@ -108,33 +122,43 @@ public class NYStylePizzaController {
         }
 
     public void addToppings() { //for use with build your own ONLY
-        //addToppingButton.setDisable(false);
         if(counter < 7) {
             String selectedTopping = availableToppings.getSelectionModel().getSelectedItem().toString();
-
             int index = availableToppings.getSelectionModel().getSelectedIndex();
             availableToppings.getItems().remove(index);
-
             toppingList.add(selectedTopping);
             selectedToppings.setItems(toppingList);
-           // System.out.println(selectedTopping);
             Topping top = Topping.valueOf(selectedTopping);
-            //System.out.println(top);
-            p.add(top); //freezing on use for no reason??
+            p.add(top);
             updatePriceOutput();
             counter++;
         }else {
             addToppingButton.setDisable(true);
         }
-
-
     }
-    public void removeTopping() {
+    public void removeTopping() { //in theory, works. needs something to disable button when empty
         //update price
         //add item back to available toppings
+        if(selectedToppings.getItems().size() == 0) { ;
+        }else {
+            String selectedRemovedTopping = selectedToppings.getSelectionModel().getSelectedItem().toString();
+            int index = selectedToppings.getSelectionModel().getSelectedIndex();
+            selectedToppings.getItems().remove(index);
+            toppingList.remove(selectedRemovedTopping);
+            ObservableList<String> temp = availableToppings.getItems();
+            temp.add(selectedRemovedTopping);
+            availableToppings.setItems(temp);
+            Topping top = Topping.valueOf(selectedRemovedTopping);
+            p.remove(top);
+            updatePriceOutput();
+            counter--;
+        }
     }
     public void addToOrder() {
-
+        Order order = new Order();
+        order.add(p);
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION, "Pizza added to order!");
+        a.show();
     }
 
 

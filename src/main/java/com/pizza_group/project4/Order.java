@@ -1,12 +1,13 @@
 package com.pizza_group.project4;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Order implements Customizable {
 
     public static final double SALES_TAX = 0.06625;
 
-    private ObservableList<Pizza> orderListView;
+    private ObservableList<Pizza> orderListView = FXCollections.observableArrayList();
     Order()  {
     }
 

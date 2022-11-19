@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import static javafx.application.Application.launch;
@@ -46,7 +47,7 @@ public class MainController {
         }
     }
     @FXML
-    protected void openNewPizza() {
+    protected void openNewYorkPizza() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("NYStylePizzaOrderingView.fxml"));
             Parent root1 = fxmlLoader.load();
@@ -65,6 +66,31 @@ public class MainController {
             errorAlert.showAndWait();
             System.out.print(e.toString());
         }
+    }
+    @FXML
+    protected void openChicagoPizza() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Chicago Style Pizza Ordering View.fxml"));
+            Parent root1 = fxmlLoader.load();
+            ChicagoStylePizzaController chicagoPizzaController = fxmlLoader.getController();
+            chicagoPizzaController.createMainController(this);
+            Stage stage = new Stage();
+            stage.setTitle("Chicago Style Pizza Order");
+            stage.setScene(new Scene(root1));
+            //   disableAllButtons();
+            stage.show();
+            //   stage.setOnCloseRequest(eventCalled -> enableAllButtons());
+        } catch (Exception e) {
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("Error");
+            errorAlert.setContentText(e.getMessage());
+            errorAlert.showAndWait();
+            System.out.print(e.toString());
+        }
+    }
+    @FXML
+    protected void close(Stage stage) {
+        stage.close();
     }
     public ObservableList<Pizza> getOrderObservableList() {
         totalOrder = new Order();
