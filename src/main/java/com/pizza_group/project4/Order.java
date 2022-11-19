@@ -8,6 +8,8 @@ public class Order implements Customizable {
 
     private ObservableList<Pizza> orderListView;
 
+    private int orderNumber;
+
 
     @Override
     public boolean add(Object obj) {
@@ -35,5 +37,17 @@ public class Order implements Customizable {
 
     public ObservableList<Pizza> getOrder() {
         return orderListView;
+    }
+
+    public void setOrderNumber(int orderNumber) {
+        this.orderNumber = orderNumber;
+    }
+
+    public int getOrderNumber() {
+        return orderNumber;
+    }
+
+    public String toString() {
+        return "Order number: " + orderNumber + " Pizza(s) ordered: " + orderListView.toString();
     }
 }

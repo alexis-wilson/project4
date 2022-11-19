@@ -27,11 +27,32 @@ public class MainController {
     protected void showCurrentOrders() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Current Order View.fxml"));
-            Parent root1 = fxmlLoader.load();
+            Parent root = fxmlLoader.load();
             CurrentOrderController currentOrderController = fxmlLoader.getController();
             currentOrderController.createMainController(this);
             Stage stage = new Stage();
             stage.setTitle("Current Orders");
+            stage.setScene(new Scene(root));
+            disableAllButtons();
+            stage.show();
+            stage.setOnCloseRequest(eventCalled -> enableAllButtons());
+        } catch (Exception e) {
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setHeaderText("Error");
+            errorAlert.setContentText(e.getMessage());
+            errorAlert.showAndWait();
+        }
+    }
+
+    @FXML
+    protected void showStoreOrders() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Store orders View.fxml"));
+            Parent root1 = fxmlLoader.load();
+            StoreOrdersController storeOrdersController = fxmlLoader.getController();
+            storeOrdersController.setMainController(this);
+            Stage stage = new Stage();
+            stage.setTitle("Store Orders");
             stage.setScene(new Scene(root1));
             disableAllButtons();
             stage.show();
@@ -42,6 +63,10 @@ public class MainController {
             errorAlert.setContentText(e.getMessage());
             errorAlert.showAndWait();
         }
+    }
+
+    public Order getTotalOrder() {
+        return totalOrder;
     }
 
     public ObservableList<Pizza> getOrderObservableList() {
@@ -62,5 +87,18 @@ public class MainController {
         orderChicago.setDisable(true);
         showStoreOrders.setDisable(true);
         showCurrentOrders.setDisable(true);
+    }
+
+    public int getOrderNumber() {
+        uniqueOrderNumber++;
+        return uniqueOrderNumber - 1;
+    }
+
+    public StoreOrder getStoreOrders() {
+        return storeOrders;
+    }
+
+    public Order getPizzaOrders() {
+        return pizzaOrders;
     }
 }

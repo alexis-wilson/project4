@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-
-<AnchorPane prefHeight="514.0" prefWidth="855.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pizza_group.project4.StoreOrdersView">
+<AnchorPane prefHeight="514.0" prefWidth="855.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pizza_group.project4.StoreOrdersController">
    <children>
       <Text layoutX="55.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Store Orders">
          <font>
             <Font size="36.0" />
          </font>
       </Text>
-      <ComboBox layoutX="156.0" layoutY="112.0" prefHeight="25.0" prefWidth="181.0" />
+      <ComboBox fx:id="orderIDList" layoutX="156.0" layoutY="112.0" onAction="#selectOrderNumber" prefHeight="25.0" prefWidth="181.0" />
       <Text layoutX="71.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order #: ">
          <font>
             <Font size="18.0" />
@@ -28,12 +22,12 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <TextField layoutX="574.0" layoutY="112.0" prefHeight="25.0" prefWidth="166.0" />
-      <ListView layoutX="71.0" layoutY="145.0" prefHeight="267.0" prefWidth="691.0" />
+      <TextField fx:id="orderTotal" layoutX="574.0" layoutY="112.0" prefHeight="25.0" prefWidth="166.0" />
+      <ListView fx:id="currentOrderOutput" layoutX="71.0" layoutY="145.0" prefHeight="267.0" prefWidth="691.0" />
       <ButtonBar layoutX="183.0" layoutY="437.0" prefHeight="33.0" prefWidth="433.0">
         <buttons>
-            <Button mnemonicParsing="false" prefHeight="25.0" text="Cancel Order" />
-          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="359.0" text="Export all store orders" />
+            <Button mnemonicParsing="false" onAction="#storeCancelOrders" prefHeight="25.0" text="Cancel Order" />
+          <Button fx:id="exportStoreOrders" mnemonicParsing="false" onAction="#exportStoreOrders" prefHeight="25.0" prefWidth="359.0" text="Export all store orders" />
         </buttons>
       </ButtonBar>
    </children>
