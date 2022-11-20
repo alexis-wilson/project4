@@ -5,6 +5,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -36,6 +38,8 @@ public class NYStylePizzaController {
     private Button removeSelectedTopping;
     @FXML
     private Button addPizzaToOrder;
+    @FXML
+    private ImageView pizzaImage;
     PizzaFactory pizzaFactory = new NYPizza();
     Pizza pizza;
     ObservableList<String> toppingList = FXCollections.observableArrayList();
@@ -52,11 +56,30 @@ public class NYStylePizzaController {
         addToppingButton.setDisable(false);
         removeSelectedTopping.setDisable(false);
         pizzaPriceOutput.setText(Double.toString(pizza.price()));
+        changeImage();
 
     }
     public void createMainController(MainController mainController){
         this.mainController = mainController;
         initialize();
+    }
+    public void changeImage(){
+        if (pizzaFlavors.getValue() == "Build Your Own") {
+            pizzaImage.setImage(new Image(NYStylePizzaController.class.getResource("assets/new-york-pizza-build-your-own.jpg").
+                    toString()));
+        } else if (pizzaFlavors.getValue() == "BBQ Chicken") {
+            pizzaImage.setImage(new Image(NYStylePizzaController.class.getResource("assets/ny-style-bbq-chicken.jpg").
+                    toString()));
+        } else if (pizzaFlavors.getValue() == "Meatzza") {
+            pizzaImage.setImage(new Image(NYStylePizzaController.class.getResource("assets/ny-style-meatzza.jpg").
+                    toString()));
+        } else if (pizzaFlavors.getValue() == "Deluxe") {
+            pizzaImage.setImage(new Image(NYStylePizzaController.class.getResource("assets/deluxe-ny-pizza.jpg").
+                    toString()));
+        } else {
+            pizzaImage.setImage(new Image(NYStylePizzaController.class.getResource("assets/new-york-style-pizza-default-view.jpg").
+                    toString()));
+        }
     }
     public void switchFlavors() { //break up later
         if(pizzaFlavors.getValue() == "Build Your Own") {
@@ -69,7 +92,7 @@ public class NYStylePizzaController {
             availableToppings.setItems(obj.getAllToppings());
             availableToppings.setDisable(false);
             updatePriceOutput();
-            //also need to change image for every change of flavor
+            changeImage();
         }else if(pizzaFlavors.getValue() == "BBQ Chicken") {
             addToppingButton.setDisable(true);
             removeSelectedTopping.setDisable(true);
@@ -81,6 +104,7 @@ public class NYStylePizzaController {
             availableToppings.setItems(items);
             availableToppings.setDisable(true);
             pizzaPriceOutput.setText(Double.toString(pizza.price()));
+            changeImage();
         }else if(pizzaFlavors.getValue() == "Meatzza") {
             addToppingButton.setDisable(true);
             removeSelectedTopping.setDisable(true);
@@ -92,6 +116,7 @@ public class NYStylePizzaController {
             availableToppings.setItems(items);
             availableToppings.setDisable(true);
             updatePriceOutput();
+            changeImage();
         }else if(pizzaFlavors.getValue() == "Deluxe") {
             addToppingButton.setDisable(true);
             removeSelectedTopping.setDisable(true);
@@ -103,6 +128,7 @@ public class NYStylePizzaController {
             availableToppings.setItems(items);
             availableToppings.setDisable(true);
            updatePriceOutput();
+           changeImage();
         }
     }
     public void changeSizeToMedium() {

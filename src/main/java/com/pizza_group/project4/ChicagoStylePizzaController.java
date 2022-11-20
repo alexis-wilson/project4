@@ -4,6 +4,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 public class ChicagoStylePizzaController {
     private MainController mainController;
@@ -31,6 +36,8 @@ public class ChicagoStylePizzaController {
     private Button removeSelectedTopping;
     @FXML
     private Button addPizzaToOrder;
+    @FXML
+    private ImageView pizzaImage;
     PizzaFactory pizza = new ChicagoPizza();
     Pizza p;
     ObservableList<String> toppingList = FXCollections.observableArrayList();
@@ -47,7 +54,26 @@ public class ChicagoStylePizzaController {
         pizzaPriceOutput.setText(Double.toString(p.price()));
         addToppingButton.setDisable(false);
         removeSelectedTopping.setDisable(false);
+        changeImage();
     }
+    public void changeImage(){
+            if (pizzaFlavors.getValue() == "Build Your Own") {
+                pizzaImage.setImage(new Image(ChicagoStylePizzaController.class.getResource("assets/build-your-own-pizza.jpg").
+                        toString()));
+            } else if (pizzaFlavors.getValue() == "BBQ Chicken") {
+                pizzaImage.setImage(new Image(ChicagoStylePizzaController.class.getResource("assets/bbq-chicken-chicago.jpg").
+                        toString()));
+            } else if (pizzaFlavors.getValue() == "Meatzza") {
+                pizzaImage.setImage(new Image(ChicagoStylePizzaController.class.getResource("assets/meatzza-chicago-pizza.jpeg").
+                        toString()));
+            } else if (pizzaFlavors.getValue() == "Deluxe") {
+                pizzaImage.setImage(new Image(ChicagoStylePizzaController.class.getResource("assets/deluxe-chicago-pizza.jpg").
+                        toString()));
+            } else {
+                pizzaImage.setImage(new Image(ChicagoStylePizzaController.class.getResource("assets/chicago style pizza default view.jpg").
+                        toString()));
+            }
+        }
     public void createMainController(MainController mainController){
         this.mainController = mainController;
         initialize();
@@ -62,8 +88,8 @@ public class ChicagoStylePizzaController {
             Topping obj = Topping.SPINACH;
             availableToppings.setItems(obj.getAllToppings());
             availableToppings.setDisable(false);
+            changeImage();
             updatePriceOutput();
-            //FIX IMAGES + CHANGE IMAGES AFTER EVERY FLAVOR CHANGE
         }else if(pizzaFlavors.getValue() == "BBQ Chicken") {
             addToppingButton.setDisable(true);
             removeSelectedTopping.setDisable(true);
@@ -74,7 +100,8 @@ public class ChicagoStylePizzaController {
                     Topping.GREEN_PEPPER.toString(), Topping.PROVOLONE.toString(), Topping.CHEDDAR.toString());
             availableToppings.setItems(items);
             availableToppings.setDisable(true);
-            pizzaPriceOutput.setText(Double.toString(p.price()));
+            changeImage();
+            updatePriceOutput();
         }else if(pizzaFlavors.getValue() == "Meatzza") {
             addToppingButton.setDisable(true);
             removeSelectedTopping.setDisable(true);
@@ -85,6 +112,7 @@ public class ChicagoStylePizzaController {
                     Topping.BEEF.toString(), Topping.HAM.toString());
             availableToppings.setItems(items);
             availableToppings.setDisable(true);
+            changeImage();
             updatePriceOutput();
         }else if(pizzaFlavors.getValue() == "Deluxe") {
             addToppingButton.setDisable(true);
@@ -96,6 +124,7 @@ public class ChicagoStylePizzaController {
                     Topping.GREEN_PEPPER.toString(), Topping.ONION.toString(), Topping.MUSHROOM.toString());
             availableToppings.setItems(items);
             availableToppings.setDisable(true);
+            changeImage();
             updatePriceOutput();
         }
     }

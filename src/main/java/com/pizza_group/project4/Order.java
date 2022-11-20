@@ -10,7 +10,6 @@ public class Order implements Customizable {
     private ObservableList<Pizza> orderListView;
 
     private int orderNumber;
-
     public Order() { orderListView = FXCollections.observableArrayList();}
 
     @Override
@@ -48,7 +47,6 @@ public class Order implements Customizable {
     public int getOrderNumber() {
         return orderNumber;
     }
-
     public String toString() {
         return "Order number: " + orderNumber + " Pizza(s) ordered: " + orderListView.toString();
     }

@@ -6,7 +6,6 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -76,11 +75,6 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <ImageView fx:id="chicagoPizzaImage" fitHeight="255.0" fitWidth="264.0" layoutX="493.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../../../Downloads/chicago%20style%20pizza%20default%20view.jpg" />
-         </image>
-      </ImageView>
       <Text layoutX="72.0" layoutY="572.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pizza Price: $">
          <font>
             <Font size="18.0" />
@@ -88,5 +82,6 @@
       </Text>
       <TextField fx:id="pizzaPriceOutput" editable="false" layoutX="175.0" layoutY="552.0" prefHeight="25.0" prefWidth="127.0" />
       <Button fx:id="addPizzaToOrder" layoutX="459.0" layoutY="552.0" mnemonicParsing="false" onAction="#addToOrder" prefHeight="25.0" prefWidth="231.0" text="Add to Order" />
+      <ImageView fx:id="pizzaImage" fitHeight="228.0" fitWidth="338.0" layoutX="459.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
