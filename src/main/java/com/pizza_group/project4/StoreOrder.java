@@ -39,9 +39,10 @@ public class StoreOrder implements Customizable {
         for (Order p : orderList) {
             if (p.getOrderNumber() == orderNumber) return p;
         }
+        return null;
     }
 
-    private boolean export(File file) {
+    public boolean export(File file) {
         try {
             FileWriter writeOrder = new FileWriter(file);
             for (Order order : orderList) {
