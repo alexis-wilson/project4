@@ -40,9 +40,9 @@ public class NYStylePizzaController {
     private Button addPizzaToOrder;
     @FXML
     private ImageView pizzaImage;
-    PizzaFactory pizzaFactory = new NYPizza();
-    Pizza pizza;
-    ObservableList<String> toppingList = FXCollections.observableArrayList();
+    private PizzaFactory pizzaFactory = new NYPizza();
+    private Pizza pizza;
+    private ObservableList<String> toppingList = FXCollections.observableArrayList();
     private int counter = 0;
     public void initialize() {
         ObservableList<String> list = FXCollections.observableArrayList("Build Your Own", "BBQ Chicken", "Meatzza", "Deluxe");
@@ -77,59 +77,69 @@ public class NYStylePizzaController {
             pizzaImage.setImage(new Image(NYStylePizzaController.class.getResource("assets/deluxe-ny-pizza.jpg").
                     toString()));
         } else {
-            pizzaImage.setImage(new Image(NYStylePizzaController.class.getResource("assets/new-york-style-pizza-default-view.jpg").
-                    toString()));
+            pizzaImage.setImage(new Image(NYStylePizzaController.class.getResource("assets/new-york-style-pizza" +
+                            "-default-view.jpg").toString()));
         }
     }
-    public void switchFlavors() { //break up later
+    public void switchFlavors() {
         if(pizzaFlavors.getValue() == "Build Your Own") {
-            addToppingButton.setDisable(false);
-            removeSelectedTopping.setDisable(false);
-            crustOutput.setText(Crust.HANDTOSSED.name());
-            pizza = pizzaFactory.createBuildYourOwn();
-            pizzaSizeSelection.selectToggle(smallPizza);
-            Topping obj = Topping.SPINACH;
-            availableToppings.setItems(obj.getAllToppings());
-            availableToppings.setDisable(false);
-            updatePriceOutput();
-            changeImage();
+           changeFlavorToBuildYourOwn();
         }else if(pizzaFlavors.getValue() == "BBQ Chicken") {
-            addToppingButton.setDisable(true);
-            removeSelectedTopping.setDisable(true);
-            crustOutput.setText(Crust.THIN.name());
-            pizza = pizzaFactory.createBBQChicken();
-            pizzaSizeSelection.selectToggle(smallPizza);
-            ObservableList<String> items =FXCollections.observableArrayList(Topping.BBQ_CHICKEN.toString(),
-                    Topping.GREEN_PEPPER.toString(), Topping.PROVOLONE.toString(), Topping.CHEDDAR.toString());
-            availableToppings.setItems(items);
-            availableToppings.setDisable(true);
-            pizzaPriceOutput.setText(Double.toString(pizza.price()));
-            changeImage();
+            defaultSettings();
+           changeFlavorToBBQChicken();
         }else if(pizzaFlavors.getValue() == "Meatzza") {
-            addToppingButton.setDisable(true);
-            removeSelectedTopping.setDisable(true);
-            crustOutput.setText(Crust.HANDTOSSED.name());
-            pizzaSizeSelection.selectToggle(smallPizza);
-            pizza = pizzaFactory.createMeatzza();
-            ObservableList<String> items =FXCollections.observableArrayList(Topping.SAUSAGE.toString(), Topping.PEPPERONI.toString(),
-                    Topping.BEEF.toString(), Topping.HAM.toString());
-            availableToppings.setItems(items);
-            availableToppings.setDisable(true);
-            updatePriceOutput();
-            changeImage();
+            defaultSettings();
+           changeFlavorToMeatzza();
         }else if(pizzaFlavors.getValue() == "Deluxe") {
-            addToppingButton.setDisable(true);
-            removeSelectedTopping.setDisable(true);
-            crustOutput.setText(Crust.BROOKLYN.name());
-            pizzaSizeSelection.selectToggle(smallPizza);
-            pizza = pizzaFactory.createDeluxe();
-            ObservableList<String> items =FXCollections.observableArrayList(Topping.SAUSAGE.toString(), Topping.PEPPERONI.toString(),
-                    Topping.GREEN_PEPPER.toString(), Topping.ONION.toString(), Topping.MUSHROOM.toString());
-            availableToppings.setItems(items);
-            availableToppings.setDisable(true);
-           updatePriceOutput();
-           changeImage();
+            defaultSettings();
+           changeFlavorToDeluxe();
         }
+    }
+    public void defaultSettings() {
+        addToppingButton.setDisable(true);
+        removeSelectedTopping.setDisable(true);
+        availableToppings.setDisable(true);
+        pizzaSizeSelection.selectToggle(smallPizza);
+    }
+    public void changeFlavorToBuildYourOwn() {
+        addToppingButton.setDisable(false);
+        removeSelectedTopping.setDisable(false);
+        crustOutput.setText(Crust.HANDTOSSED.name());
+        pizza = pizzaFactory.createBuildYourOwn();
+        pizzaSizeSelection.selectToggle(smallPizza);
+        Topping obj = Topping.SPINACH;
+        availableToppings.setItems(obj.getAllToppings());
+        availableToppings.setDisable(false);
+        updatePriceOutput();
+        changeImage();
+    }
+    public void changeFlavorToBBQChicken() {
+        crustOutput.setText(Crust.THIN.name());
+        pizza = pizzaFactory.createBBQChicken();
+        ObservableList<String> items =FXCollections.observableArrayList(Topping.BBQ_CHICKEN.toString(),
+                Topping.GREEN_PEPPER.toString(), Topping.PROVOLONE.toString(), Topping.CHEDDAR.toString());
+        availableToppings.setItems(items);
+        updatePriceOutput();
+        changeImage();
+    }
+    public void changeFlavorToMeatzza(){
+        crustOutput.setText(Crust.HANDTOSSED.name());
+        pizza = pizzaFactory.createMeatzza();
+        ObservableList<String> items =FXCollections.observableArrayList(Topping.SAUSAGE.toString(),
+                Topping.PEPPERONI.toString(), Topping.BEEF.toString(), Topping.HAM.toString());
+        availableToppings.setItems(items);
+        updatePriceOutput();
+        changeImage();
+    }
+    public void changeFlavorToDeluxe() {
+        crustOutput.setText(Crust.BROOKLYN.name()); //set crust names
+        pizza = pizzaFactory.createDeluxe(); //create pizza
+        ObservableList<String> items =FXCollections.observableArrayList(Topping.SAUSAGE.toString(),
+                Topping.PEPPERONI.toString(), Topping.GREEN_PEPPER.toString(), Topping.ONION.toString(),
+                Topping.MUSHROOM.toString());
+        availableToppings.setItems(items);
+        updatePriceOutput();
+        changeImage();
     }
     public void changeSizeToMedium() {
             pizza.setSizeToMedium();
@@ -162,9 +172,7 @@ public class NYStylePizzaController {
             addToppingButton.setDisable(true);
         }
     }
-    public void removeTopping() { //in theory, works. needs something to disable button when empty
-        //update price
-        //add item back to available toppings
+    public void removeTopping() {
         if (selectedToppings.getItems().size() != 0) {
             String selectedRemovedTopping = selectedToppings.getSelectionModel().getSelectedItem().toString();
             int index = selectedToppings.getSelectionModel().getSelectedIndex();
