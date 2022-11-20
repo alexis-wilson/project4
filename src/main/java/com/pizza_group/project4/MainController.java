@@ -29,6 +29,7 @@ public class MainController {
     private Button storeOrdersSelection;
     @FXML
     private Button myOrderSelection;
+    @FXML
     protected void showCurrentOrders() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Current Order View.fxml"));
@@ -38,9 +39,9 @@ public class MainController {
             Stage stage = new Stage();
             stage.setTitle("Current Orders");
             stage.setScene(new Scene(root));
-            disableAllButtons();
+            //disableAllButtons();
             stage.show();
-            stage.setOnCloseRequest(eventCalled -> enableAllButtons());
+            //stage.setOnCloseRequest(eventCalled -> enableAllButtons());
         } catch (Exception e) {
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
             errorAlert.setHeaderText("Error");
@@ -122,7 +123,9 @@ public class MainController {
     }
     public ObservableList<Pizza> getOrderObservableList() {
         totalOrder = new Order();
-        totalOrder.getOrder().addAll(pizzaOrders.getOrder());
+        if (totalOrder.getOrder() != null) {
+            totalOrder.getOrder().addAll(pizzaOrders.getOrder());
+        }
         return this.totalOrder.getOrder();
     }
 /*
@@ -151,6 +154,10 @@ public class MainController {
 
     public StoreOrder getStoreOrders() {
         return storeOrders;
+    }
+
+    public ObservableList<Order> getStoreOrderObservableList() {
+        return storeOrders.getOrderList();
     }
 
     public Order getPizzaOrders() {

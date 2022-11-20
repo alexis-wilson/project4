@@ -8,6 +8,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
+import java.io.File;
 
 public class StoreOrdersController {
 
@@ -42,11 +46,13 @@ public class StoreOrdersController {
     }
 
     private void setComboBox() {
-        orderIDList = FXCollections.observableArrayList();
-        for (int i = 0; i < mainController.getStoreOrders().size(); i++) {
-            orderIDList.add(mainController.getStoreOrders().getOrder(i).getOrderNumber());
+        if (!(orderID.getValue() == null)) {
+            orderIDList = FXCollections.observableArrayList();
+            for (int i = 0; i < mainController.getStoreOrders().size(); i++) {
+                orderIDList.add(mainController.getStoreOrders().getOrder(i).getOrderNumber());
+            }
+            orderID.setItems(orderIDList);
         }
-        orderID.setItems(orderIDList);
     }
 
     @FXML
@@ -70,20 +76,47 @@ public class StoreOrdersController {
 
     @FXML
     protected void exportStoreOrders() {
-
+        if (!mainController.getStoreOrderObservableList().isEmpty()) {
+            FileChooser chooseExport = new FileChooser();
+            chooseExport.setTitle("Choose where to export to");
+            chooseExport.getExtensionFilters().add(new FileChooser.ExtensionFilter("ExportOrder", "*.txt"));
+            Stage stage = new Stage();
+            File file = chooseExport.showSaveDialog(stage);
+            showExportResult(file);
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Cannot export no orders.");
+            alert.showAndWait();
+        }
     }
 
     @FXML
     protected void storeCancelOrders() {
-        if(orderID.getValue() == null)
-        {
+        if(orderID.getValue() == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setContentText("No order selected, cannot remove.");
             alert.showAndWait();
-            return;
         }
+        else {
 
+        }
     }
+
+    private void showExportResult(File file){
+        Alert result = new Alert(Alert.AlertType.INFORMATION);
+        if (mainController.getStoreOrders().export(file)) {
+            result.setHeaderText("Export Order Success");
+            result.setContentText("Successfully exported orders.");
+        }
+        else {
+            result.setHeaderText("Error");
+            result.setContentText("There was a problem exporting orders.");
+        }
+        result.show();
+    }
+
 
 }

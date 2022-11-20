@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane prefHeight="535.0" prefWidth="811.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pizza_group.project4.CurrentOrderView">
+<AnchorPane prefHeight="535.0" prefWidth="811.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pizza_group.project4.CurrentOrderController">
    <children>
       <Text layoutX="53.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Pizza Order" wrappingWidth="348.13671875">
          <font>
