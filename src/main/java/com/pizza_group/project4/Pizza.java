@@ -1,11 +1,19 @@
 package com.pizza_group.project4;
 import java.util.ArrayList;
 
+/**
+ * Pizza class contains all general information shared among pizzas as well as functions to implement Customizable.
+ * @author Alexis Wilson, James Alba
+ */
 public abstract class Pizza implements Customizable {
     private ArrayList<Topping> toppings;
     private Crust crust;
     private Size size;
 
+    /**
+     * An abstract function that subclasses must implement to calculate the price of the specific pizza.
+     * @return price of the pizza
+     */
     public abstract double price();
 
     public Pizza(ArrayList<Topping> toppings, Crust crust, Size size) {
