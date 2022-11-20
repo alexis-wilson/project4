@@ -26,21 +26,32 @@ public class CurrentOrderController {
 
     private MainController mainController;
     public static final double SALES_TAX = 0.06625;
-    public static final double SALES_TAX_MULTIPLIER = 0.06625;
+    public static final double SALES_TAX_MULTIPLIER = 1.06625;
 
     public void createMainController(MainController mainController) {
         this.mainController = mainController;
         totalOrderOutput.setItems(mainController.getPizzaOrdersObservableList());
-        updateOrders();
+        if (mainController.getPizzaOrdersObservableList().size() != 0) {
+            orderNumber.setText(String.valueOf(mainController.getOrderNumber()));
+            updateOrders();
+        }
     }
 
     public void updateOrders() {
         ObservableList<Pizza> newOrders = FXCollections.observableArrayList();
         newOrders.setAll(mainController.getOrderObservableList());
         totalOrderOutput.setItems(newOrders);
-        salesTax.setText((String.format("%.2f", mainController.getTotalOrder().orderTotalPrice() * SALES_TAX)));
-        subTotal.setText((String.format("%.2f",  mainController.getTotalOrder().orderTotalPrice() * SALES_TAX_MULTIPLIER)));
-        orderTotal.setText((String.format("%.2f", mainController.getTotalOrder().orderTotalPrice())));
+        if (mainController.getPizzaOrdersObservableList().size() != 0) {
+            salesTax.setText((String.format("%.2f", mainController.getTotalOrder().orderTotalPrice() * SALES_TAX)));
+            subTotal.setText((String.format("%.2f",  mainController.getTotalOrder().orderTotalPrice())));
+            orderTotal.setText((String.format("%.2f", mainController.getTotalOrder().orderTotalPrice() * SALES_TAX_MULTIPLIER)));
+        }
+        else {
+            orderNumber.clear();
+            salesTax.clear();
+            subTotal.clear();
+            orderTotal.clear();
+        }
     }
 
     @FXML
@@ -53,6 +64,8 @@ public class CurrentOrderController {
         } else {
             mainController.getTotalOrder().setOrderNumber(mainController.getOrderNumber());
             mainController.getStoreOrders().add(mainController.getTotalOrder());
+            mainController.getTotalOrder().getOrder().clear();
+            mainController.addOrderNumber();
             updateOrders();
         }
     }
@@ -73,11 +86,7 @@ public class CurrentOrderController {
     @FXML
     protected void removePizza() {
         if (totalOrderOutput.getSelectionModel().getSelectedItem() != null){
-            ObservableList<Pizza> newOrders = FXCollections.observableArrayList();
-            newOrders.setAll(mainController.getOrderObservableList());
-            for (Pizza p : newOrders) {
-                if (p.equals(totalOrderOutput.getSelectionModel().getSelectedItem())) newOrders.remove(p);
-            }
+            mainController.getTotalOrder().remove(totalOrderOutput.getSelectionModel().getSelectedItem());
             updateOrders();
         }
         else {

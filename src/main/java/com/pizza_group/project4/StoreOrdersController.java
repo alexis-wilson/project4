@@ -28,17 +28,15 @@ public class StoreOrdersController {
     ComboBox orderID;
 
     @FXML
-    private ListView<Order> currentOrderOutput;
-
+    ListView<Order> storeOrderOutput;
 
     private MainController mainController;
 
     @FXML
     void initialize()
     {
-        //Initialize combo box with number of orders dynamically
         setComboBox();
-        orderTotal.appendText("$0.00");
+        //orderTotal.appendText("$0.00");
     }
 
     public void setMainController(MainController mainController) {
@@ -69,7 +67,7 @@ public class StoreOrdersController {
 
     private void setThisOrderContentField(int cOrderID) {
         currentOrder = FXCollections.observableArrayList();
-        currentOrderOutput.setItems(currentOrder);
+        storeOrderOutput.setItems(currentOrder);
         currentOrder.add(mainController.getStoreOrders().getOrder(cOrderID).toString());
         orderTotal.clear();
         orderTotal.appendText(String.format("$%,.2f", mainController.getStoreOrders().getOrder(cOrderID).orderTotalPrice()));
