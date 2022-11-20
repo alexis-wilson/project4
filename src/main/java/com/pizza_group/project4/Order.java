@@ -1,5 +1,6 @@
 package com.pizza_group.project4;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Order implements Customizable {
@@ -10,6 +11,7 @@ public class Order implements Customizable {
 
     private int orderNumber;
 
+    public Order() { orderListView = FXCollections.observableArrayList();}
 
     @Override
     public boolean add(Object obj) {

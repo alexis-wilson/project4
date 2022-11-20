@@ -36,8 +36,8 @@ public class NYStylePizzaController {
     private Button removeSelectedTopping;
     @FXML
     private Button addPizzaToOrder;
-    PizzaFactory pizza = new NYPizza();
-    Pizza p;
+    PizzaFactory pizzaFactory = new NYPizza();
+    Pizza pizza;
     ObservableList<String> toppingList = FXCollections.observableArrayList();
     private int counter = 0;
     public void initialize() {
@@ -45,13 +45,13 @@ public class NYStylePizzaController {
         pizzaFlavors.setItems(list);
         pizzaFlavors.setValue("Build Your Own");
         crustOutput.setText(Crust.HANDTOSSED.name());
-        p = pizza.createBuildYourOwn();
+        pizza = pizzaFactory.createBuildYourOwn();
         Topping obj = Topping.SPINACH;
         availableToppings.setItems(obj.getAllToppings());
         availableToppings.setDisable(false);
         addToppingButton.setDisable(false);
         removeSelectedTopping.setDisable(false);
-        pizzaPriceOutput.setText(Double.toString(p.price()));
+        pizzaPriceOutput.setText(Double.toString(pizza.price()));
 
     }
     public void createMainController(MainController mainController){
@@ -63,7 +63,7 @@ public class NYStylePizzaController {
             addToppingButton.setDisable(false);
             removeSelectedTopping.setDisable(false);
             crustOutput.setText(Crust.HANDTOSSED.name());
-            p = pizza.createBuildYourOwn();
+            pizza = pizzaFactory.createBuildYourOwn();
             pizzaSizeSelection.selectToggle(smallPizza);
             Topping obj = Topping.SPINACH;
             availableToppings.setItems(obj.getAllToppings());
@@ -74,19 +74,19 @@ public class NYStylePizzaController {
             addToppingButton.setDisable(true);
             removeSelectedTopping.setDisable(true);
             crustOutput.setText(Crust.THIN.name());
-            p = pizza.createBBQChicken();
+            pizza = pizzaFactory.createBBQChicken();
             pizzaSizeSelection.selectToggle(smallPizza);
             ObservableList<String> items =FXCollections.observableArrayList(Topping.BBQ_CHICKEN.toString(),
                     Topping.GREEN_PEPPER.toString(), Topping.PROVOLONE.toString(), Topping.CHEDDAR.toString());
             availableToppings.setItems(items);
             availableToppings.setDisable(true);
-            pizzaPriceOutput.setText(Double.toString(p.price()));
+            pizzaPriceOutput.setText(Double.toString(pizza.price()));
         }else if(pizzaFlavors.getValue() == "Meatzza") {
             addToppingButton.setDisable(true);
             removeSelectedTopping.setDisable(true);
             crustOutput.setText(Crust.HANDTOSSED.name());
             pizzaSizeSelection.selectToggle(smallPizza);
-            p = pizza.createMeatzza();
+            pizza = pizzaFactory.createMeatzza();
             ObservableList<String> items =FXCollections.observableArrayList(Topping.SAUSAGE.toString(), Topping.PEPPERONI.toString(),
                     Topping.BEEF.toString(), Topping.HAM.toString());
             availableToppings.setItems(items);
@@ -97,7 +97,7 @@ public class NYStylePizzaController {
             removeSelectedTopping.setDisable(true);
             crustOutput.setText(Crust.BROOKLYN.name());
             pizzaSizeSelection.selectToggle(smallPizza);
-            p = pizza.createDeluxe();
+            pizza = pizzaFactory.createDeluxe();
             ObservableList<String> items =FXCollections.observableArrayList(Topping.SAUSAGE.toString(), Topping.PEPPERONI.toString(),
                     Topping.GREEN_PEPPER.toString(), Topping.ONION.toString(), Topping.MUSHROOM.toString());
             availableToppings.setItems(items);
@@ -106,19 +106,19 @@ public class NYStylePizzaController {
         }
     }
     public void changeSizeToMedium() {
-            p.setSizeToMedium();
+            pizza.setSizeToMedium();
             updatePriceOutput();
         }
         public void changeSizeToLarge() {
-            p.setSizeToLarge();
+            pizza.setSizeToLarge();
             updatePriceOutput();
         }
         public void changeSizeToSmall(){
-            p.setSizeToSmall();
+            pizza.setSizeToSmall();
            updatePriceOutput();
         }
         public void updatePriceOutput() {
-        pizzaPriceOutput.setText(Double.toString(p.price()));
+        pizzaPriceOutput.setText(Double.toString(pizza.price()));
         }
 
     public void addToppings() { //for use with build your own ONLY
@@ -129,7 +129,7 @@ public class NYStylePizzaController {
             toppingList.add(selectedTopping);
             selectedToppings.setItems(toppingList);
             Topping top = Topping.valueOf(selectedTopping);
-            p.add(top);
+            pizza.add(top);
             updatePriceOutput();
             counter++;
         }else {
@@ -139,8 +139,7 @@ public class NYStylePizzaController {
     public void removeTopping() { //in theory, works. needs something to disable button when empty
         //update price
         //add item back to available toppings
-        if(selectedToppings.getItems().size() == 0) { ;
-        }else {
+        if (selectedToppings.getItems().size() != 0) {
             String selectedRemovedTopping = selectedToppings.getSelectionModel().getSelectedItem().toString();
             int index = selectedToppings.getSelectionModel().getSelectedIndex();
             selectedToppings.getItems().remove(index);
@@ -149,14 +148,13 @@ public class NYStylePizzaController {
             temp.add(selectedRemovedTopping);
             availableToppings.setItems(temp);
             Topping top = Topping.valueOf(selectedRemovedTopping);
-            p.remove(top);
+            pizza.remove(top);
             updatePriceOutput();
             counter--;
         }
     }
     public void addToOrder() {
-        Order order = new Order();
-        order.add(p);
+        mainController.getTotalOrder().add(pizza);
         Alert a = new Alert(Alert.AlertType.CONFIRMATION, "Pizza added to order!");
         a.show();
     }

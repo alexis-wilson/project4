@@ -148,8 +148,7 @@ public class ChicagoStylePizzaController {
         }
     }
     public void addToOrder() {
-        Order order = new Order();
-        order.add(p);
+        mainController.getTotalOrder().add(p);
         Alert a = new Alert(Alert.AlertType.CONFIRMATION, "Pizza added to order!");
         a.show();
     }
