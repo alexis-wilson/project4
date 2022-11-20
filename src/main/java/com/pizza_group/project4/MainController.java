@@ -16,9 +16,9 @@ public class MainController {
     @FXML
     private Label welcomeText;
 
-    private int uniqueOrderNumber = 0;
-    private final StoreOrder storeOrders = new StoreOrder();;
-    private Order totalOrder = new Order();
+    private int uniqueOrderNumber = 1;
+    private final StoreOrder storeOrders = new StoreOrder();
+    private final Order totalOrder = new Order();
     @FXML
     private Button newYorkPizzaSelection;
     @FXML
@@ -142,8 +142,11 @@ public class MainController {
 
 
     public int getOrderNumber() {
+        return uniqueOrderNumber;
+    }
+
+    public void addOrderNumber() {
         uniqueOrderNumber++;
-        return uniqueOrderNumber - 1;
     }
 
     public StoreOrder getStoreOrders() {
