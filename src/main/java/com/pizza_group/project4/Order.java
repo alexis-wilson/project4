@@ -52,4 +52,8 @@ public class Order implements Customizable {
     public String toString() {
         return "Order number: " + orderNumber + " Pizza(s) ordered: " + orderListView.toString();
     }
+
+    public ObservableList<Pizza> getOrderList() {
+        return this.orderListView;
+    }
 }

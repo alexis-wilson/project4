@@ -17,8 +17,7 @@ public class MainController {
     private Label welcomeText;
 
     private int uniqueOrderNumber = 0;
-    private final StoreOrder storeOrders = new StoreOrder();
-    private final Order pizzaOrders = new Order();
+    private final StoreOrder storeOrders = new StoreOrder();;
     private Order totalOrder = new Order();
     @FXML
     private Button newYorkPizzaSelection;
@@ -121,11 +120,7 @@ public class MainController {
         stage.close();
     }
     public ObservableList<Pizza> getOrderObservableList() {
-        totalOrder = new Order();
-        if (totalOrder.getOrder() != null) {
-            totalOrder.getOrder().addAll(pizzaOrders.getOrder());
-        }
-        return this.totalOrder.getOrder();
+        return totalOrder.getOrder();
     }
 /*
     public void enableAllButtons() {
@@ -159,7 +154,7 @@ public class MainController {
         return storeOrders.getOrderList();
     }
 
-    public Order getPizzaOrders() {
-        return pizzaOrders;
+    public ObservableList<Pizza> getPizzaOrdersObservableList() {
+        return totalOrder.getOrderList();
     }
 }
