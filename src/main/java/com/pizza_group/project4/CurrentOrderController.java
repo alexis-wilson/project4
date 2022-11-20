@@ -28,9 +28,9 @@ public class CurrentOrderController {
     public static final double SALES_TAX = 0.06625;
     public static final double SALES_TAX_MULTIPLIER = 0.06625;
 
-    public void createMainController(MainController mainController){
+    public void createMainController(MainController mainController) {
         this.mainController = mainController;
-        totalOrderOutput.setItems(mainController.getOrderObservableList());
+        totalOrderOutput.setItems(mainController.getPizzaOrdersObservableList());
         updateOrders();
     }
 
@@ -53,7 +53,6 @@ public class CurrentOrderController {
         } else {
             mainController.getTotalOrder().setOrderNumber(mainController.getOrderNumber());
             mainController.getStoreOrders().add(mainController.getTotalOrder());
-            mainController.getPizzaOrders().getOrder().clear();
             updateOrders();
         }
     }
@@ -67,7 +66,6 @@ public class CurrentOrderController {
             errorAlert.showAndWait();
         } else {
             mainController.getTotalOrder().getOrder().clear();
-            mainController.getPizzaOrders().getOrder().clear();
             updateOrders();
         }
     }
