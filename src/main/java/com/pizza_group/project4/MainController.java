@@ -58,9 +58,9 @@ public class MainController {
             Stage stage = new Stage();
             stage.setTitle("Store Orders");
             stage.setScene(new Scene(root1));
-          //  disableAllButtons();
+            //  disableAllButtons();
             stage.show();
-          //  stage.setOnCloseRequest(eventCalled -> enableAllButtons());
+            //  stage.setOnCloseRequest(eventCalled -> enableAllButtons());
         } catch (Exception e) {
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
             errorAlert.setHeaderText("Error");
@@ -78,9 +78,9 @@ public class MainController {
             Stage stage = new Stage();
             stage.setTitle("NY Style Pizza Order");
             stage.setScene(new Scene(root1));
-         //   disableAllButtons();
+            //   disableAllButtons();
             stage.show();
-         //   stage.setOnCloseRequest(eventCalled -> enableAllButtons());
+            //   stage.setOnCloseRequest(eventCalled -> enableAllButtons());
         } catch (Exception e) {
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
             errorAlert.setHeaderText("Error");
@@ -129,17 +129,13 @@ public class MainController {
         storeOrdersSelection.setDisable(false);
         myOrderSelection.setDisable(false);
     }
-
     public void disableAllButtons() {
        newYorkPizzaSelection.setDisable(true);
         chicagoPizzaSelection.setDisable(true);
         storeOrdersSelection.setDisable(true);
         myOrderSelection.setDisable(true);
     }
-
  */
-
-
 
     public int getOrderNumber() {
         return uniqueOrderNumber;
@@ -154,7 +150,7 @@ public class MainController {
     }
 
     public ObservableList<Order> getStoreOrderObservableList() {
-        return storeOrders.getOrderList();
+        return storeOrders.getStoreOrderList();
     }
 
     public ObservableList<Pizza> getPizzaOrdersObservableList() {
