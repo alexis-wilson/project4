@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import java.io.IOException;
 
 /**
  * MainController creates the main menu, holds methods for navigating to different windows, and methods for managing
@@ -60,13 +61,13 @@ public class MainController {
     protected void showStoreOrders() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Store orders View.fxml"));
-            Parent root1 = fxmlLoader.load();
+            Parent root2 = fxmlLoader.load();
             StoreOrdersController storeOrdersController = fxmlLoader.getController();
             storeOrdersController.setMainController(this);
             Stage stage = new Stage();
             stage.setTitle("Store Orders");
-            stage.setScene(new Scene(root1));
-            //disableAllButtons();
+            stage.setScene(new Scene(root2));
+            //  disableAllButtons();
             stage.show();
            // stage.setOnCloseRequest(eventCalled -> enableAllButtons());
         } catch (Exception e) {

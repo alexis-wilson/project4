@@ -61,4 +61,9 @@ public class Deluxe extends Pizza {
         deluxePrice = setDeluxePrice(getSize());
         return deluxePrice;
     }
+
+    @Override
+    public String toString() {
+        return "Deluxe (" + getCrust().getPizzaStyle() + " Style - " + getCrust().toString() + "), " + getToppings() + " " + getSize().toString() + " $" + price();
+    }
 }

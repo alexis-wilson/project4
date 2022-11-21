@@ -48,7 +48,12 @@ public class Order implements Customizable {
         return orderNumber;
     }
     public String toString() {
-        return "Order number: " + orderNumber + " Pizza(s) ordered: " + orderListView.toString();
+        StringBuilder result = new StringBuilder();
+        result.append("Order number: ").append(orderNumber).append(", Pizza(s) ordered: ");
+        for (Pizza pizza : orderListView) {
+            result.append(pizza.toString());
+        }
+        return result.toString();
     }
 
     public ObservableList<Pizza> getOrderList() {

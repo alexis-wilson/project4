@@ -85,4 +85,9 @@ public class BuildYourOwn extends Pizza implements Customizable {
         BYOPrice = toppingsTotal + sizeTotal;
         return BYOPrice;
     }
+
+    @Override
+    public String toString() {
+        return "Build your own (" + getCrust().getPizzaStyle() + " Style - " + getCrust().toString() + "), " + getToppings() + " " + getSize().toString() + " $" + price();
+    }
 }

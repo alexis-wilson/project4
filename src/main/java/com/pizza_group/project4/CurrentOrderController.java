@@ -71,10 +71,15 @@ public class CurrentOrderController {
             errorAlert.setContentText("You must add pizzas in the order to place the order!");
             errorAlert.showAndWait();
         } else {
-            mainController.getTotalOrder().setOrderNumber(mainController.getOrderNumber());
-            mainController.getStoreOrders().add(mainController.getTotalOrder());
-            mainController.getTotalOrder().getOrder().clear();
+            Order addOrder = new Order();
+            ObservableList<Pizza> pizzaList = mainController.getPizzaOrdersObservableList();
+            for (Pizza pizza : pizzaList) {
+                addOrder.getOrderList().add(pizza);
+            }
+            addOrder.setOrderNumber(mainController.getOrderNumber());
             mainController.addOrderNumber();
+            mainController.getStoreOrders().add(addOrder);
+            mainController.getTotalOrder().getOrder().clear();
             updateOrders();
         }
     }

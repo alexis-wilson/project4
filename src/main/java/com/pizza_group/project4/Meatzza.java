@@ -60,4 +60,9 @@ public class Meatzza extends Pizza {
         meatzzaPrice = setMeatzzaPrice(getSize());
         return meatzzaPrice;
     }
+
+    @Override
+    public String toString() {
+        return "Meatzza (" + getCrust().getPizzaStyle() + " Style - " + getCrust().toString() + "), " + getToppings() + " " + getSize().toString() + " $" + price();
+    }
 }
