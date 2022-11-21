@@ -10,6 +10,9 @@ import java.util.Arrays;
  */
 public class BBQChicken extends Pizza {
     private double BBQPrice;
+    private static final double SMALL_PRICE = 13.99;
+    private static final double MEDIUM_PRICE = 15.99;
+    private static final double LARGE_PRICE = 17.99;
     private static final ArrayList<Topping> toppings = new ArrayList<>(Arrays.asList(Topping.BBQ_CHICKEN,
             Topping.GREEN_PEPPER, Topping.PROVOLONE, Topping.CHEDDAR));
 
@@ -29,11 +32,11 @@ public class BBQChicken extends Pizza {
      */
     public double setBBQPrice(Size size) {
         if (size.equals(Size.SMALL)) {
-            return 13.99;
+            return SMALL_PRICE;
         } else if (size.equals(Size.MEDIUM)) {
-            return 15.99;
+            return MEDIUM_PRICE;
         } else if (size.equals(Size.LARGE)) {
-            return 17.99;
+            return LARGE_PRICE;
         } return 0;
     }
 
@@ -65,7 +68,10 @@ public class BBQChicken extends Pizza {
        BBQPrice = setBBQPrice(getSize());
        return BBQPrice;
     }
-
+    /**
+     * Returns a string of information of the BBQ Chicken pizza
+     * @return string of BBQ Chicken pizza information
+     */
     @Override
     public String toString() {
         return "BBQ Chicken (" + getCrust().getPizzaStyle() + " Style - " + getCrust().toString() + "), " + getToppings() + " " + getSize().toString() + " $" + price();

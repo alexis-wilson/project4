@@ -18,7 +18,7 @@ public class BuildYourOwnTest {
         //test 1: price() will output the correct price when zero toppings is added to a small pizza1
         double expectedOutput = 8.99;
         double actualOutput = (double) Math.round(pizza.price() * 100) / 100;// rounds to 2 decimals
-        System.out.println(actualOutput);
+        //System.out.println(actualOutput);
         assertEquals(expectedOutput, actualOutput, 0.00);
         //test 2: price() will output the correct price when one topping is added to a small pizza1
         pizza.add(toppings[0]);
@@ -75,6 +75,7 @@ public class BuildYourOwnTest {
         double expectedOutput = 10.99;
         double actualOutput = (double) Math.round(pizza2.price() * 100) / 100; // rounds to 2 decimals
         assertEquals(expectedOutput, actualOutput, 0.00);
+
         //test 2: price() will output the correct price when one topping is added to a medium pizza2
         pizza2.add(toppings[0]);
         expectedOutput = 12.58;
@@ -122,7 +123,7 @@ public class BuildYourOwnTest {
     public void largePizza(){
         //creates an instance of Pizza and sets size to large
         Topping[] toppings = Topping.values();
-        PizzaFactory p = new NYPizza();
+        PizzaFactory p = new ChicagoPizza();
         Pizza pizza3 = p.createBuildYourOwn();
         pizza3.setSizeToLarge();
 

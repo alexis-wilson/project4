@@ -7,6 +7,9 @@ import java.util.ArrayList;
  */
 public class BuildYourOwn extends Pizza implements Customizable {
     private double BYOPrice;
+    private static final double SMALL_PRICE = 8.99;
+    private static final double MEDIUM_PRICE = 10.99;
+    private static final double LARGE_PRICE = 12.99;
     private static ArrayList<Topping> toppings = new ArrayList<>();
     /**
      * Constructor that sets toppings, crust, and size from superclass Pizza. Also, sets price with default size SMALL.
@@ -23,11 +26,11 @@ public class BuildYourOwn extends Pizza implements Customizable {
      */
     public double setBYOPrice(Size size) {
         if (size.equals(Size.SMALL))  {
-           return 8.99;
+           return SMALL_PRICE;
         }else if (size.equals(Size.MEDIUM)) {
-            return 10.99;
+            return MEDIUM_PRICE;
         }else if (size.equals(Size.LARGE)) {
-            return 12.99;
+            return LARGE_PRICE;
         }
         return 0;
     }
@@ -85,7 +88,10 @@ public class BuildYourOwn extends Pizza implements Customizable {
         BYOPrice = toppingsTotal + sizeTotal;
         return BYOPrice;
     }
-
+    /**
+     * Returns a string of information of the Build Your Own pizza
+     * @return string of Build Your Own pizza information
+     */
     @Override
     public String toString() {
         return "Build your own (" + getCrust().getPizzaStyle() + " Style - " + getCrust().toString() + "), " + getToppings() + " " + getSize().toString() + " $" + price();

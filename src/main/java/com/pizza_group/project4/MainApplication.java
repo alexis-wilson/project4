@@ -20,12 +20,11 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("MainView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 900, 900);
+        Scene scene = new Scene(fxmlLoader.load(), 900, 700);
         stage.setTitle("Main Menu");
         stage.setScene(scene);
         stage.show();
     }
-
     /**
      * Launches the application
      * @param args

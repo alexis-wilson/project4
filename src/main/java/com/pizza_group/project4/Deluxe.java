@@ -9,6 +9,9 @@ import java.util.Arrays;
  */
 public class Deluxe extends Pizza {
     private double deluxePrice;
+    private static final double SMALL_PRICE = 14.99;
+    private static final double MEDIUM_PRICE = 16.99;
+    private static final double LARGE_PRICE = 18.99;
     private static final ArrayList<Topping> toppings = new ArrayList<>(Arrays.asList(Topping.SAUSAGE, Topping.PEPPERONI, Topping.GREEN_PEPPER, Topping.ONION, Topping.MUSHROOM));
     /**
      * Constructor that sets toppings, crust, and size from superclass Pizza. Also, sets price with default size SMALL.
@@ -25,12 +28,12 @@ public class Deluxe extends Pizza {
      */
     public double setDeluxePrice(Size size) {
         if (size.equals(Size.SMALL))  {
-            return 14.99;
+            return SMALL_PRICE;
         }
         else if (size.equals(Size.MEDIUM)) {
-            return 16.99;
+            return MEDIUM_PRICE;
         } else if(size.equals(Size.LARGE)) {
-            return 18.99;
+            return LARGE_PRICE;
         }
         return 0;
     }
@@ -62,6 +65,10 @@ public class Deluxe extends Pizza {
         return deluxePrice;
     }
 
+    /**
+     * Returns a string of information of the deluxe pizza
+     * @return string of deluxe pizza information
+     */
     @Override
     public String toString() {
         return "Deluxe (" + getCrust().getPizzaStyle() + " Style - " + getCrust().toString() + "), " + getToppings() + " " + getSize().toString() + " $" + price();
