@@ -1,5 +1,4 @@
 package com.pizza_group.project4;
-
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,12 +9,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-import static javafx.application.Application.launch;
-
+/**
+ * MainController creates the main menu, holds methods for navigating to different windows, and methods for managing
+ *  orders and pizzas.
+ * @author Alexis Wilson, James Alba
+ */
 public class MainController {
-    @FXML
-    private Label welcomeText;
-
     private int uniqueOrderNumber = 1;
     private final StoreOrder storeOrders = new StoreOrder();
     private final Order totalOrder = new Order();
@@ -27,6 +26,11 @@ public class MainController {
     private Button storeOrdersSelection;
     @FXML
     private Button myOrderSelection;
+
+    /**
+     * showCurrentOrders() creates a new stage and sets root to proper fxml file for Current Order window.
+     * Catches exceptions if unable to open stage.
+     */
     @FXML
     protected void showCurrentOrders() {
         try {
@@ -48,6 +52,10 @@ public class MainController {
         }
     }
 
+    /**
+     * showStoresOrders() creates a new stage and sets root to proper fxml file for Store Order window.
+     * Catches exception if unable to open window.
+     */
     @FXML
     protected void showStoreOrders() {
         try {
@@ -58,9 +66,9 @@ public class MainController {
             Stage stage = new Stage();
             stage.setTitle("Store Orders");
             stage.setScene(new Scene(root1));
-            //  disableAllButtons();
+            //disableAllButtons();
             stage.show();
-            //  stage.setOnCloseRequest(eventCalled -> enableAllButtons());
+           // stage.setOnCloseRequest(eventCalled -> enableAllButtons());
         } catch (Exception e) {
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
             errorAlert.setHeaderText("Error");
@@ -68,6 +76,11 @@ public class MainController {
             errorAlert.showAndWait();
         }
     }
+
+    /**
+     * openNewYorkPizza() creates a new stage and sets root to proper fxml file for New York Style Pizza Ordering View
+     * window. Catches exception if unable to open window.
+     */
     @FXML
     protected void openNewYorkPizza() {
         try {
@@ -78,9 +91,9 @@ public class MainController {
             Stage stage = new Stage();
             stage.setTitle("NY Style Pizza Order");
             stage.setScene(new Scene(root1));
-            //   disableAllButtons();
+            disableAllButtons();
             stage.show();
-            //   stage.setOnCloseRequest(eventCalled -> enableAllButtons());
+            stage.setOnCloseRequest(eventCalled -> enableAllButtons());
         } catch (Exception e) {
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
             errorAlert.setHeaderText("Error");
@@ -90,10 +103,17 @@ public class MainController {
         }
     }
 
+    /**
+     * Gets Order object for current total order
+     * @return
+     */
     public Order getTotalOrder() {
         return totalOrder;
     }
-
+    /**
+     * openChicagoPizza() creates a new stage and sets root to proper fxml file for Chicago Style Pizza Ordering View
+     * window. Catches exception if unable to open window.
+     */
     @FXML
     protected void openChicagoPizza() {
         try {
@@ -104,9 +124,9 @@ public class MainController {
             Stage stage = new Stage();
             stage.setTitle("Chicago Style Pizza Order");
             stage.setScene(new Scene(root1));
-            //   disableAllButtons();
+             disableAllButtons();
             stage.show();
-            //   stage.setOnCloseRequest(eventCalled -> enableAllButtons());
+               stage.setOnCloseRequest(eventCalled -> enableAllButtons());
         } catch (Exception e) {
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
             errorAlert.setHeaderText("Error");
@@ -115,14 +135,15 @@ public class MainController {
             System.out.print(e.toString());
         }
     }
-    @FXML
-    protected void close(Stage stage) {
-        stage.close();
-    }
+
+    /**
+     *
+     * @return
+     */
     public ObservableList<Pizza> getOrderObservableList() {
         return totalOrder.getOrder();
     }
-/*
+
     public void enableAllButtons() {
         newYorkPizzaSelection.setDisable(false);
         chicagoPizzaSelection.setDisable(false);
@@ -135,7 +156,6 @@ public class MainController {
         storeOrdersSelection.setDisable(true);
         myOrderSelection.setDisable(true);
     }
- */
 
     public int getOrderNumber() {
         return uniqueOrderNumber;
