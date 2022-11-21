@@ -152,7 +152,7 @@ public class MainController {
         myOrderSelection.setDisable(false);
     }
     public void disableAllButtons() {
-       newYorkPizzaSelection.setDisable(true);
+        newYorkPizzaSelection.setDisable(true);
         chicagoPizzaSelection.setDisable(true);
         storeOrdersSelection.setDisable(true);
         myOrderSelection.setDisable(true);
