@@ -81,10 +81,19 @@ public abstract class Pizza implements Customizable {
         return false;
     }
 
+    /**
+     *  A helper method that returns the type of crust that was set when the pizza object was made.
+     * @return Crust object for the specific pizza that was made and initialized.
+     */
     public Crust getCrust() {
         return crust;
     }
 
+    /**
+     * A helper function that returns a string representation of all the toppings that were added to the certain pizza
+     * object.
+     * @return String representing all the toppings that were added onto the pizza.
+     */
     public String getToppings() {
         StringBuilder result = new StringBuilder();
         for (Topping topping : toppings) {

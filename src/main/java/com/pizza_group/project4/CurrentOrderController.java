@@ -7,7 +7,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 /**
- * CurrentOrderController controls the view of MyOrder by allowing capabilities to place an order, clear an order, and
+ * CurrentOrderController controls the view of Order by allowing capabilities to place an order, clear an order, and
  * remove pizzas. Also, displays tax, subtotal, and order total.
  * @author Alexis Wilson, James Alba
  */

@@ -68,9 +68,10 @@ public class BBQChicken extends Pizza {
        BBQPrice = setBBQPrice(getSize());
        return BBQPrice;
     }
+
     /**
-     * Returns a string of information of the BBQ Chicken pizza
-     * @return string of BBQ Chicken pizza information
+     * Returns a string representation of the pizza object displaying all the information.
+     * @return String representing the BBQChicken object displaying the name, toppings, and price.
      */
     @Override
     public String toString() {
