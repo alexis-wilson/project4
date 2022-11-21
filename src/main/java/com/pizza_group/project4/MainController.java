@@ -42,9 +42,9 @@ public class MainController {
             Stage stage = new Stage();
             stage.setTitle("Current Orders");
             stage.setScene(new Scene(root));
-            //disableAllButtons();
+            disableAllButtons();
             stage.show();
-            //stage.setOnCloseRequest(eventCalled -> enableAllButtons());
+            stage.setOnCloseRequest(eventCalled -> enableAllButtons());
         } catch (Exception e) {
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
             errorAlert.setHeaderText("Error");
@@ -67,9 +67,9 @@ public class MainController {
             Stage stage = new Stage();
             stage.setTitle("Store Orders");
             stage.setScene(new Scene(root2));
-            //  disableAllButtons();
+            disableAllButtons();
             stage.show();
-           // stage.setOnCloseRequest(eventCalled -> enableAllButtons());
+            stage.setOnCloseRequest(eventCalled -> enableAllButtons());
         } catch (Exception e) {
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
             errorAlert.setHeaderText("Error");
