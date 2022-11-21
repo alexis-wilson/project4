@@ -6,21 +6,20 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
+/**
+ * CurrentOrderController controls the view of MyOrder by allowing capabilities to place an order, clear an order, and
+ * remove pizzas. Also, displays tax, subtotal, and order total.
+ * @author Alexis Wilson, James Alba
+ */
 public class CurrentOrderController {
-
-
     @FXML
     private ListView<Pizza> totalOrderOutput;
-
     @FXML
     TextField subTotal;
-
     @FXML
     TextField salesTax;
-
     @FXML
     TextField orderTotal;
-
     @FXML
     TextField orderNumber;
 
@@ -28,6 +27,10 @@ public class CurrentOrderController {
     public static final double SALES_TAX = 0.06625;
     public static final double SALES_TAX_MULTIPLIER = 1.06625;
 
+    /**
+     * Sets main controller object to the current order controller and sets order number and related order information.
+     * @param mainController passed in maincontroller object from main controller
+     */
     public void createMainController(MainController mainController) {
         this.mainController = mainController;
         totalOrderOutput.setItems(mainController.getPizzaOrdersObservableList());
@@ -37,6 +40,9 @@ public class CurrentOrderController {
         }
     }
 
+    /**
+     * Updates the information in the ListView and TextFields to relevant information after changing.
+     */
     public void updateOrders() {
         ObservableList<Pizza> newOrders = FXCollections.observableArrayList();
         newOrders.setAll(mainController.getOrderObservableList());
@@ -54,6 +60,9 @@ public class CurrentOrderController {
         }
     }
 
+    /**
+     * Places an order by sending order to store orders and instantiating another order object
+     */
     @FXML
     protected void placeOrder() {
         if (mainController.getOrderObservableList().isEmpty()) {
@@ -75,6 +84,9 @@ public class CurrentOrderController {
         }
     }
 
+    /**
+     * Clears the pizzas from the object and ListView
+     */
     @FXML
     protected void clearOrder() {
         if (mainController.getOrderObservableList().isEmpty()) {
@@ -88,6 +100,9 @@ public class CurrentOrderController {
         }
     }
 
+    /**
+     * Removes a selected pizza from the order and updates ListView
+     */
     @FXML
     protected void removePizza() {
         if (totalOrderOutput.getSelectionModel().getSelectedItem() != null){

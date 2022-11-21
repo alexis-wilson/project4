@@ -128,12 +128,12 @@ public class BuildYourOwnTest {
 
         //test 1: price() will output the correct price when zero toppings is added to a large pizza
         double expectedOutput = 12.99;
-        double actualOutput = (double) Math.round(pizza3.price() * 100) / 100; // rounds to 2 decimals
+        double actualOutput = (double) Math.round((pizza3.price()) * 100) / 100; // rounds to 2 decimals
         assertEquals(expectedOutput, actualOutput, 0.00);
         //test 2: price() will output the correct price when one topping is added to a large pizza
         pizza3.add(toppings[0]);
-        expectedOutput = 14.58;
-        actualOutput = (double) Math.round(pizza3.price() * 100) / 100;
+         expectedOutput = 14.58;
+         actualOutput = (double) Math.round(pizza3.price() * 100) / 100;
         assertEquals(expectedOutput, actualOutput, 0.00);
 
         //test 3: price() will output the correct price when two toppings is added to a large pizza
