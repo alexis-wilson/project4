@@ -110,6 +110,7 @@ public class MainController {
     public Order getTotalOrder() {
         return totalOrder;
     }
+
     /**
      * openChicagoPizza() creates a new stage and sets root to proper fxml file for Chicago Style Pizza Ordering View
      * window. Catches exception if unable to open window.
@@ -126,7 +127,7 @@ public class MainController {
             stage.setScene(new Scene(root1));
              disableAllButtons();
             stage.show();
-               stage.setOnCloseRequest(eventCalled -> enableAllButtons());
+            stage.setOnCloseRequest(eventCalled -> enableAllButtons());
         } catch (Exception e) {
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
             errorAlert.setHeaderText("Error");
@@ -136,19 +137,27 @@ public class MainController {
     }
 
     /**
-     *
-     * @return
+     * This returns an observable list of total order using the getOrder method.
+     * @return An ObservableList of the pizza object.
      */
     public ObservableList<Pizza> getOrderObservableList() {
         return totalOrder.getOrder();
     }
 
+    /**
+     * This enables all the buttons in the main view fxml file. This is so that the user is able to use the main menu after its been disabled.
+     */
     public void enableAllButtons() {
         newYorkPizzaSelection.setDisable(false);
         chicagoPizzaSelection.setDisable(false);
         storeOrdersSelection.setDisable(false);
         myOrderSelection.setDisable(false);
     }
+
+    /**
+     * This disables all the buttons in the main view fxml file. This is to prevent any possible errors from occurring by
+     * the user opening multiple windows of different functions.
+     */
     public void disableAllButtons() {
         newYorkPizzaSelection.setDisable(true);
         chicagoPizzaSelection.setDisable(true);
@@ -156,22 +165,42 @@ public class MainController {
         myOrderSelection.setDisable(true);
     }
 
+    /**
+     * This is a helper function that returns an order number to be used when called.
+     * @return Integer representing a unique order number.
+     */
     public int getOrderNumber() {
         return uniqueOrderNumber;
     }
 
+    /**
+     * This is a helper function that increases the order number in order to maintain uniqueness. This is used when an
+     * order is added to the store orders and a new order number is needed.
+     */
     public void addOrderNumber() {
         uniqueOrderNumber++;
     }
 
+    /**
+     * This is a helper function that returns the store orders object in this class.
+     * @return StoreOrder object representing the store orders.
+     */
     public StoreOrder getStoreOrders() {
         return storeOrders;
     }
 
+    /**
+     * This is a helper function that returns the store orders in an observable list form.
+     * @return ObservableList of the Order object representing an observable list of the store orders.
+     */
     public ObservableList<Order> getStoreOrderObservableList() {
         return storeOrders.getStoreOrderList();
     }
 
+    /**
+     * This is a helper function that returns the current order in an observable list form.
+     * @return ObservableList of the pizza object representing the list of pizzas that are currently being ordered.
+     */
     public ObservableList<Pizza> getPizzaOrdersObservableList() {
         return totalOrder.getOrderList();
     }

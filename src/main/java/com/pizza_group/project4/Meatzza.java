@@ -61,6 +61,10 @@ public class Meatzza extends Pizza {
         return meatzzaPrice;
     }
 
+    /**
+     * Returns a string representation of the pizza object displaying all the information.
+     * @return String representing the meatzza pizza object displaying the name, toppings, and price.
+     */
     @Override
     public String toString() {
         return "Meatzza (" + getCrust().getPizzaStyle() + " Style - " + getCrust().toString() + "), " + getToppings() + " " + getSize().toString() + " $" + price();

@@ -86,6 +86,10 @@ public class BuildYourOwn extends Pizza implements Customizable {
         return BYOPrice;
     }
 
+    /**
+     * Returns a string representation of the pizza object displaying all the information.
+     * @return String representing the build your own pizza object displaying the name, toppings, and price.
+     */
     @Override
     public String toString() {
         return "Build your own (" + getCrust().getPizzaStyle() + " Style - " + getCrust().toString() + "), " + getToppings() + " " + getSize().toString() + " $" + price();

@@ -62,6 +62,10 @@ public class Deluxe extends Pizza {
         return deluxePrice;
     }
 
+    /**
+     * Returns a string representation of the pizza object displaying all the information.
+     * @return String representing the deluxe pizza object displaying the name, toppings, and price.
+     */
     @Override
     public String toString() {
         return "Deluxe (" + getCrust().getPizzaStyle() + " Style - " + getCrust().toString() + "), " + getToppings() + " " + getSize().toString() + " $" + price();

@@ -13,6 +13,11 @@ import javafx.stage.Stage;
 
 import java.io.File;
 
+/**
+ * StoreOrdersController controls the view of StoreOrder by allowing capabilities to cancel a store order, export a store
+ * order, and browse through all orders in store order. Also, displays order total including tax.
+ * @author Alexis Wilson, James Alba
+ */
 public class StoreOrdersController {
 
     @FXML
@@ -29,13 +34,20 @@ public class StoreOrdersController {
 
     private MainController mainController;
 
+    /**
+     * Sets main controller object to the current store order controller and sets combo box containing all order number
+     * and related order information.
+     * @param mainController passed in maincontroller object from main controller
+     */
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
         setComboBox();
         orderTotal.appendText("$0.00");
     }
 
-
+    /**
+     * Private helper method that sets all the order numbers into the combo box to be viewed.
+     */
     private void setComboBox() {
         orderList = FXCollections.observableArrayList();
         for (int i = 0; i < mainController.getStoreOrders().getSize(); i++) {
@@ -44,6 +56,9 @@ public class StoreOrdersController {
         orderNumber.setItems(orderList);
     }
 
+    /**
+     * Selects an order number from combo box to be viewed and used.
+     */
     @FXML
     protected void selectOrderNumber() {
         if(orderNumber.getValue() != null) {
@@ -52,6 +67,9 @@ public class StoreOrdersController {
         }
     }
 
+    /**
+     * Private helper method that displays all the order info from the order number selected from combo box.
+     */
     private void displayOrderInfo(int orderID) {
         ObservableList<Pizza> currentOrder = FXCollections.observableArrayList();
         currentOrder.setAll(mainController.getStoreOrders().getOrder(orderID).getOrderList());
@@ -60,6 +78,9 @@ public class StoreOrdersController {
         orderTotal.appendText(String.format("$%,.2f", mainController.getStoreOrders().getOrder(orderID).orderTotalPrice()));
     }
 
+    /**
+     * Exports all the store orders into a text file and saved in the desired location by the user.
+     */
     @FXML
     protected void exportStoreOrders() {
         if (!mainController.getStoreOrderObservableList().isEmpty()) {
@@ -78,6 +99,9 @@ public class StoreOrdersController {
         }
     }
 
+    /**
+     * Cancels the selected order from the store orders.
+     */
     @FXML
     protected void storeCancelOrders() {
         if(orderNumber.getValue() == null) {
@@ -91,6 +115,9 @@ public class StoreOrdersController {
         }
     }
 
+    /**
+     * Private helper method that removes the selected order from store orders.
+     */
     private void removeOrder() {
         orderTotal.clear();
         orderTotal.appendText("$0.00");
@@ -101,6 +128,9 @@ public class StoreOrdersController {
         setComboBox();
     }
 
+    /**
+     * Private helper method that displays whether the export of store order was successful or not.
+     */
     private void showExportResult(File file){
         Alert result = new Alert(Alert.AlertType.INFORMATION);
         if (mainController.getStoreOrders().export(file)) {
@@ -113,6 +143,4 @@ public class StoreOrdersController {
         }
         result.show();
     }
-
-
 }
