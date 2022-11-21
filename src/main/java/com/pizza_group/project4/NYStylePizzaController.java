@@ -121,9 +121,8 @@ public class NYStylePizzaController {
         removeSelectedTopping.setDisable(false);
         availableToppings.setDisable(false);
         pizzaSizeSelection.selectToggle(smallPizza);
-
         crustOutput.setText(Crust.HANDTOSSED.name());
-        pizza = pizzaFactory.createBuildYourOwn();
+         pizza = pizzaFactory.createBuildYourOwn();
         Topping obj = Topping.SPINACH; //random topping to access topping class
         availableToppings.setItems(obj.getAllToppings());
         updatePriceOutput();

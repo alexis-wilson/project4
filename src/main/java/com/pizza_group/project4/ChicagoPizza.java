@@ -1,4 +1,7 @@
 package com.pizza_group.project4;
+
+import java.util.ArrayList;
+
 /**
  * Chicago Pizza creates the different flavors of Chicago Pizza and returns each pizza.
  * @author Alexis Wilson, James Alba
@@ -33,8 +36,8 @@ public class ChicagoPizza implements PizzaFactory{
      * @return pizza object of specified flavor
      */
     public Pizza createBuildYourOwn() {
-        Pizza byoPizza = new BuildYourOwn(Crust.PAN);
-        return byoPizza;
+        BuildYourOwn byopizza = new BuildYourOwn(new ArrayList<>(), Crust.HANDTOSSED, Size.SMALL);
+        return byopizza;
     }
 
 }

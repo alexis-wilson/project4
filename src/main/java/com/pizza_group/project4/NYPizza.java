@@ -1,5 +1,7 @@
 package com.pizza_group.project4;
 
+import java.util.ArrayList;
+
 /**
  * NY Pizza creates the different flavors of NY Pizza and returns each pizza.
  * @author Alexis Wilson, James Alba
@@ -34,7 +36,7 @@ public class NYPizza implements PizzaFactory{
      * @return pizza object of specified flavor
      */
     public Pizza createBuildYourOwn() {
-        Pizza byoPizza = new BuildYourOwn(Crust.HANDTOSSED);
-        return byoPizza;
+        BuildYourOwn byopizza = new BuildYourOwn(new ArrayList<>(), Crust.PAN, Size.SMALL);
+        return byopizza;
     }
 }

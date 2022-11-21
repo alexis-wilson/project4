@@ -56,6 +56,14 @@ public abstract class Pizza implements Customizable {
     }
 
     /**
+     * Gets ArrayList of Toppings for pizza
+     * @return arraylist of toppings for current pizza
+     */
+    public ArrayList<Topping> getToppings() {
+        return toppings;
+    }
+
+    /**
      * Adds a topping to the pizza
      * @param obj object to be added to an object of the implemented class
      * @return returns true if topping added. Otherwise, returns false.
@@ -94,7 +102,7 @@ public abstract class Pizza implements Customizable {
      * object.
      * @return String representing all the toppings that were added onto the pizza.
      */
-    public String getToppings() {
+    public String getStringToppings() {
         StringBuilder result = new StringBuilder();
         for (Topping topping : toppings) {
             result.append(topping.toString()).append(", ");
