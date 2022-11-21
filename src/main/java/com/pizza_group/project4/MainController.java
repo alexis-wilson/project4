@@ -100,7 +100,6 @@ public class MainController {
             errorAlert.setHeaderText("Error");
             errorAlert.setContentText(e.getMessage());
             errorAlert.showAndWait();
-            System.out.print(e.toString());
         }
     }
 
@@ -133,7 +132,6 @@ public class MainController {
             errorAlert.setHeaderText("Error");
             errorAlert.setContentText(e.getMessage());
             errorAlert.showAndWait();
-            System.out.print(e.toString());
         }
     }
 
