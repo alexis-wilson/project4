@@ -2,7 +2,6 @@ package com.pizza_group.project4;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -36,8 +35,12 @@ public class StoreOrder implements Customizable {
     }
 
     public Order getOrder(int orderNumber) {
-        for (Order p : orderList) {
-            if (p.getOrderNumber() == orderNumber) return p;
+        return orderList.get(orderNumber);
+    }
+
+    public Order getID(int orderID) {
+        for(Order order: orderList) {
+            if(order.getOrderNumber() == orderID) return order;
         }
         return null;
     }
@@ -56,8 +59,11 @@ public class StoreOrder implements Customizable {
         }
     }
 
-    public int size() {
+    public int getSize() {
         return orderList.size();
     }
 
+    public ObservableList<Order> getOrderList() {
+        return this.orderList;
+    }
 }

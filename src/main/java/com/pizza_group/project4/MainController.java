@@ -10,12 +10,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 import static javafx.application.Application.launch;
 
 public class MainController {
-    @FXML
-    private Label welcomeText;
-
     private int uniqueOrderNumber = 1;
     private final StoreOrder storeOrders = new StoreOrder();
     private final Order totalOrder = new Order();
@@ -52,12 +51,12 @@ public class MainController {
     protected void showStoreOrders() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Store orders View.fxml"));
-            Parent root1 = fxmlLoader.load();
+            Parent root2 = fxmlLoader.load();
             StoreOrdersController storeOrdersController = fxmlLoader.getController();
             storeOrdersController.setMainController(this);
             Stage stage = new Stage();
             stage.setTitle("Store Orders");
-            stage.setScene(new Scene(root1));
+            stage.setScene(new Scene(root2));
             //  disableAllButtons();
             stage.show();
             //  stage.setOnCloseRequest(eventCalled -> enableAllButtons());

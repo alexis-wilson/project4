@@ -91,4 +91,9 @@ public class BuildYourOwn extends Pizza implements Customizable {
         pizza.setSizeToSmall();
         System.out.println(pizza.price());
     }
+
+    @Override
+    public String toString() {
+        return "Build your own (" + getCrust().getPizzaStyle() + " Style - " + getCrust().toString() + "), " + getToppings() + " " + getSize().toString() + " $" + price();
+    }
 }

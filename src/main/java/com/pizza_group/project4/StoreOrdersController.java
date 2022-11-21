@@ -19,58 +19,45 @@ public class StoreOrdersController {
     TextField orderTotal;
 
     @FXML
-    ObservableList currentOrder;
+    ObservableList orderList;
 
     @FXML
-    ObservableList orderIDList;
+    ComboBox<Integer> orderNumber;
 
     @FXML
-    ComboBox orderID;
-
-    @FXML
-    ListView<Order> storeOrderOutput;
+    ListView<Pizza> storeOrderOutput;
 
     private MainController mainController;
 
-    @FXML
-    void initialize()
-    {
-        setComboBox();
-        //orderTotal.appendText("$0.00");
-    }
-
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
+        setComboBox();
+        orderTotal.appendText("$0.00");
     }
 
 
     private void setComboBox() {
-        if (!(orderID.getValue() == null)) {
-            orderIDList = FXCollections.observableArrayList();
-            for (int i = 0; i < mainController.getStoreOrders().size(); i++) {
-                orderIDList.add(mainController.getStoreOrders().getOrder(i).getOrderNumber());
-            }
-            orderID.setItems(orderIDList);
+        orderList = FXCollections.observableArrayList();
+        for (int i = 0; i < mainController.getStoreOrders().getSize(); i++) {
+            orderList.add(mainController.getStoreOrders().getOrder(i).getOrderNumber());
         }
+        orderNumber.setItems(orderList);
     }
 
     @FXML
-    protected void selectOrderNumber(ActionEvent event) {
-        if(!(orderID.getValue() == null)) {
-            int currentOrderID = orderID.getSelectionModel().getSelectedIndex();
-            if(currentOrderID == -1) {
-                return;
-            }
-            setThisOrderContentField(currentOrderID);
+    protected void selectOrderNumber() {
+        if(orderNumber.getValue() != null) {
+            int currentOrderID = orderNumber.getSelectionModel().getSelectedIndex();
+            if (currentOrderID != -1) displayOrderInfo(currentOrderID);
         }
     }
 
-    private void setThisOrderContentField(int cOrderID) {
-        currentOrder = FXCollections.observableArrayList();
+    private void displayOrderInfo(int orderID) {
+        ObservableList<Pizza> currentOrder = FXCollections.observableArrayList();
+        currentOrder.setAll(mainController.getStoreOrders().getOrder(orderID).getOrderList());
         storeOrderOutput.setItems(currentOrder);
-        currentOrder.add(mainController.getStoreOrders().getOrder(cOrderID).toString());
         orderTotal.clear();
-        orderTotal.appendText(String.format("$%,.2f", mainController.getStoreOrders().getOrder(cOrderID).orderTotalPrice()));
+        orderTotal.appendText(String.format("$%,.2f", mainController.getStoreOrders().getOrder(orderID).orderTotalPrice()));
     }
 
     @FXML
@@ -93,15 +80,25 @@ public class StoreOrdersController {
 
     @FXML
     protected void storeCancelOrders() {
-        if(orderID.getValue() == null) {
+        if(orderNumber.getValue() == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setContentText("No order selected, cannot remove.");
             alert.showAndWait();
         }
         else {
-
+            removeOrder();
         }
+    }
+
+    private void removeOrder() {
+        orderTotal.clear();
+        orderTotal.appendText("$0.00");
+        int selectedOrderID = orderNumber.getSelectionModel().getSelectedItem();
+        mainController.getStoreOrders().remove(mainController.getStoreOrders().getID(selectedOrderID));
+        storeOrderOutput.getItems().clear();
+        orderNumber.getItems().clear();
+        setComboBox();
     }
 
     private void showExportResult(File file){
