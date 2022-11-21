@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
  */
 public class NYStylePizzaController {
     private MainController mainController;
+    private static final int MAX_TOPPING = 7;
     @FXML
     private ToggleGroup pizzaSizeSelection;
     @FXML
@@ -197,7 +198,7 @@ public class NYStylePizzaController {
      * Otherwise, locks button to add topping.
      */
     public void addToppings() { //for use with build your own ONLY
-        if(counter < 7 && availableToppings.getSelectionModel().getSelectedItem() != null) {
+        if(counter < MAX_TOPPING && availableToppings.getSelectionModel().getSelectedItem() != null) {
             String selectedTopping = availableToppings.getSelectionModel().getSelectedItem().toString();
             int index = availableToppings.getSelectionModel().getSelectedIndex();
             availableToppings.getItems().remove(index);
@@ -207,11 +208,12 @@ public class NYStylePizzaController {
             pizza.add(top);
             updatePriceOutput();
             counter++;
-        }else if(availableToppings.getSelectionModel().getSelectedItem() == null && counter < 7) {
+        }else if(availableToppings.getSelectionModel().getSelectedItem() == null && counter < MAX_TOPPING) {
             Alert a = new Alert(Alert.AlertType.ERROR,"You must select a topping to add!");
             a.show();
         }else {
-            addToppingButton.setDisable(true);
+            Alert a = new Alert(Alert.AlertType.ERROR,"You have reached a max of 7 toppings!");
+            a.show();
         }
     }
     /**

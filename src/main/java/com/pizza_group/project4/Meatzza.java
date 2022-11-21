@@ -9,6 +9,9 @@ import java.util.Arrays;
  */
 public class Meatzza extends Pizza {
     private double meatzzaPrice;
+    private static final double SMALL_PRICE = 15.99;
+    private static final double MEDIUM_PRICE = 17.99;
+    private static final double LARGE_PRICE = 19.99;
     private static final ArrayList<Topping> toppings = new ArrayList<>(Arrays.asList(Topping.SAUSAGE, Topping.PEPPERONI, Topping.BEEF, Topping.HAM));
     /**
      * Constructor that sets toppings, crust, and size from superclass Pizza. Also, sets price with default size SMALL.
@@ -25,11 +28,11 @@ public class Meatzza extends Pizza {
      */
     public double setMeatzzaPrice(Size size) {
         if (size.equals(Size.SMALL))  {
-            return 15.99;
+            return SMALL_PRICE;
         } else if (size.equals(Size.MEDIUM)) {
-            return 17.99;
+            return MEDIUM_PRICE;
         }else if (size.equals(Size.LARGE)) {
-            return 19.99;
+            return LARGE_PRICE;
         }
         return 0;
     }

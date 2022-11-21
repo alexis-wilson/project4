@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
  */
 public class ChicagoStylePizzaController {
     private MainController mainController;
+    private static final int MAX_TOPPING = 7;
     @FXML
     private ToggleGroup pizzaSizeSelection;
     @FXML
@@ -204,10 +205,10 @@ public class ChicagoStylePizzaController {
 
     /**
      * addToppings() allows the selected topping be added to the selected toppings list view if user has less than 7 toppings.
-     * Otherwise, locks button to add topping.
+     * Otherwise, sends appropriate alerts to inform user.
      */
     public void addToppings() { //for use with build your own ONLY
-        if(counter < 7 && availableToppings.getSelectionModel().getSelectedItem() != null) {
+        if(counter < MAX_TOPPING && availableToppings.getSelectionModel().getSelectedItem() != null) {
             String selectedTopping = availableToppings.getSelectionModel().getSelectedItem().toString();
             int index = availableToppings.getSelectionModel().getSelectedIndex();
             availableToppings.getItems().remove(index);
@@ -217,11 +218,12 @@ public class ChicagoStylePizzaController {
             p.add(top);
             updatePriceOutput();
             counter++;
-        }else if(availableToppings.getSelectionModel().getSelectedItem() == null && counter < 7) {
+        }else if(availableToppings.getSelectionModel().getSelectedItem() == null && counter < MAX_TOPPING) {
             Alert a = new Alert(Alert.AlertType.ERROR,"You must select a topping to add!");
             a.show();
         }else {
-            addToppingButton.setDisable(true);
+            Alert a = new Alert(Alert.AlertType.ERROR,"You have reached a max of 7 toppings!");
+            a.show();
         }
     }
 
@@ -229,7 +231,9 @@ public class ChicagoStylePizzaController {
      * Removes a topping if there is available toppings to remove. Then, updates counter of toppings and price.
      */
     public void removeTopping() {
-        if(selectedToppings.getItems().size() == 0) { ;
+        if(selectedToppings.getItems().size() == 0) {
+            Alert a = new Alert(Alert.AlertType.ERROR,"There are no toppings to remove.");
+            a.show();
         }else if (selectedToppings.getSelectionModel().getSelectedItem() == null) {
             Alert a = new Alert(Alert.AlertType.ERROR,"You must select a topping to remove!");
             a.show();

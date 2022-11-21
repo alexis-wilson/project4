@@ -125,7 +125,7 @@ public class MainController {
             Stage stage = new Stage();
             stage.setTitle("Chicago Style Pizza Order");
             stage.setScene(new Scene(root1));
-             disableAllButtons();
+            disableAllButtons();
             stage.show();
             stage.setOnCloseRequest(eventCalled -> enableAllButtons());
         } catch (Exception e) {
