@@ -92,6 +92,8 @@ public class ChicagoStylePizzaController {
      * Sets certain elements to appropriate state for flavors BBQChicken, Meatzza, and Deluxe.
      */
     public void defaultSettings() {
+        ObservableList<String> newTopping = FXCollections.observableArrayList();
+        selectedToppings.setItems(newTopping);
         addToppingButton.setDisable(true);
         removeSelectedTopping.setDisable(true);
         pizzaSizeSelection.selectToggle(smallPizza);
@@ -104,7 +106,7 @@ public class ChicagoStylePizzaController {
      */
     public void switchFlavors() {
         if(pizzaFlavors.getValue() == "Build Your Own") {
-           changeFlavorToBuildYourOwn();
+            changeFlavorToBuildYourOwn();
         }else if(pizzaFlavors.getValue() == "BBQ Chicken") {
             defaultSettings();
             changeFlavorToBBQChicken();

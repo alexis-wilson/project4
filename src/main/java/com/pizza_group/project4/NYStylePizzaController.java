@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 /**
  * A controller class that handles all GUI operations in order to allow users to fully create a NY Style Pizza and
@@ -121,9 +122,8 @@ public class NYStylePizzaController {
         removeSelectedTopping.setDisable(false);
         availableToppings.setDisable(false);
         pizzaSizeSelection.selectToggle(smallPizza);
-
         crustOutput.setText(Crust.HANDTOSSED.name());
-        pizza = pizzaFactory.createBuildYourOwn();
+         pizza = pizzaFactory.createBuildYourOwn();
         Topping obj = Topping.SPINACH; //random topping to access topping class
         availableToppings.setItems(obj.getAllToppings());
         updatePriceOutput();
@@ -249,4 +249,5 @@ public class NYStylePizzaController {
         Alert a = new Alert(Alert.AlertType.CONFIRMATION, "Pizza added to order!");
         a.show();
     }
+
 }

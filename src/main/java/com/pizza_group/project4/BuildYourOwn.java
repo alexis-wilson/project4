@@ -10,13 +10,12 @@ public class BuildYourOwn extends Pizza implements Customizable {
     private static final double SMALL_PRICE = 8.99;
     private static final double MEDIUM_PRICE = 10.99;
     private static final double LARGE_PRICE = 12.99;
-    private static ArrayList<Topping> toppings = new ArrayList<>();
     /**
      * Constructor that sets toppings, crust, and size from superclass Pizza. Also, sets price with default size SMALL.
      * @param crust crust enum to create a pizza for different styles
      */
-    public BuildYourOwn(Crust crust) {
-        super(toppings, crust,Size.SMALL);
+    public BuildYourOwn(ArrayList<Topping> toppings, Crust crust, Size size) {
+        super(toppings, crust,size);
         this.BYOPrice  = setBYOPrice(Size.SMALL);
     }
     /**
@@ -42,7 +41,7 @@ public class BuildYourOwn extends Pizza implements Customizable {
     private double toppingsPrice() {
         double total = 0;
         int counter = 0;
-        while (counter < toppings.size()) {
+        while (counter < getToppings().size()) {
             total += 1.59;
             counter++;
         }
@@ -58,7 +57,7 @@ public class BuildYourOwn extends Pizza implements Customizable {
     public boolean add(Object obj) {
         if(obj instanceof Topping) {
             Topping top = (Topping)obj;
-            toppings.add(top);
+            getToppings().add(top);
             return true;
         }
         return false;
@@ -72,7 +71,7 @@ public class BuildYourOwn extends Pizza implements Customizable {
     public boolean remove(Object obj) {
         if (obj instanceof Topping) {
             Topping removedTop = (Topping) obj;
-            toppings.remove(removedTop);
+            getToppings().remove(removedTop);
             return true;
         }
         return false;
@@ -86,7 +85,7 @@ public class BuildYourOwn extends Pizza implements Customizable {
         double toppingsTotal = toppingsPrice();
         double sizeTotal = setBYOPrice(getSize());
         BYOPrice = toppingsTotal + sizeTotal;
-        return BYOPrice;
+        return Double.parseDouble(String.format("%.2f",BYOPrice));
     }
     /**
      * Returns a string of information of the Build Your Own pizza
@@ -94,6 +93,6 @@ public class BuildYourOwn extends Pizza implements Customizable {
      */
     @Override
     public String toString() {
-        return "Build your own (" + getCrust().getPizzaStyle() + " Style - " + getCrust().toString() + "), " + getToppings() + " " + getSize().toString() + " $" + price();
+        return "Build your own (" + getCrust().getPizzaStyle() + " Style - " + getCrust().toString() + "), " + getStringToppings() + " " + getSize().toString() + " $" + price();
     }
 }
