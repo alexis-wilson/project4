@@ -84,7 +84,7 @@ public class BuildYourOwn extends Pizza implements Customizable {
     public double price() {
         double toppingsTotal = toppingsPrice();
         double sizeTotal = setBYOPrice(getSize());
-        BYOPrice = toppingsTotal + sizeTotal;
+        BYOPrice = (double) Math.round((toppingsTotal + sizeTotal) * 100) / 100;
         return Double.parseDouble(String.format("%.2f",BYOPrice));
     }
     /**

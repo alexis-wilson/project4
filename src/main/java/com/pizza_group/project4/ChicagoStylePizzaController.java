@@ -1,10 +1,14 @@
 package com.pizza_group.project4;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+
 /**
  * A controller class that handles all GUI operations in order to allow users to fully create a Chicago Style Pizza and
  *  add it to their order.
@@ -251,9 +255,13 @@ public class ChicagoStylePizzaController {
      * Calls order list from main controller method and add pizza to running order. Then, displays an alert that says
      * order was successfully added.
      */
-    public void addToOrder() {
+    public void addToOrder(ActionEvent e) {
         mainController.getTotalOrder().add(p);
         Alert a = new Alert(Alert.AlertType.CONFIRMATION, "Pizza added to order!");
         a.show();
+        final Node source = (Node) e.getSource();
+        final Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
+        mainController.enableAllButtons();
     }
 }
