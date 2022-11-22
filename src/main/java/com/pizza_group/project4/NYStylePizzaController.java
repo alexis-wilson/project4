@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 
 /**
  * A controller class that handles all GUI operations in order to allow users to fully create a NY Style Pizza and
@@ -22,10 +21,6 @@ public class NYStylePizzaController {
     @FXML
     private RadioButton smallPizza;
     @FXML
-    private RadioButton mediumPizza;
-    @FXML
-    private RadioButton largePizza;
-    @FXML
     private TextField crustOutput;
     @FXML
     private ListView availableToppings;
@@ -37,8 +32,6 @@ public class NYStylePizzaController {
     private Button addToppingButton;
     @FXML
     private Button removeSelectedTopping;
-    @FXML
-    private Button addPizzaToOrder;
     @FXML
     private ImageView pizzaImage;
     private PizzaFactory pizzaFactory = new NYPizza();
@@ -108,6 +101,7 @@ public class NYStylePizzaController {
      * Sets certain elements to appropriate state for flavors BBQChicken, Meatzza, and Deluxe.
      */
     public void defaultSettings() {
+        selectedToppings.getItems().clear();
         addToppingButton.setDisable(true);
         removeSelectedTopping.setDisable(true);
         availableToppings.setDisable(true);
