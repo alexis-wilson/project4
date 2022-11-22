@@ -85,7 +85,7 @@ public class BuildYourOwn extends Pizza implements Customizable {
         double toppingsTotal = toppingsPrice();
         double sizeTotal = setBYOPrice(getSize());
         BYOPrice = toppingsTotal + sizeTotal;
-        return BYOPrice;
+        return Double.parseDouble(String.format("%.2f",BYOPrice));
     }
     /**
      * Returns a string of information of the Build Your Own pizza

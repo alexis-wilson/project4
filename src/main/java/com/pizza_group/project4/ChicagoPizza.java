@@ -36,7 +36,7 @@ public class ChicagoPizza implements PizzaFactory{
      * @return pizza object of specified flavor
      */
     public Pizza createBuildYourOwn() {
-        BuildYourOwn byopizza = new BuildYourOwn(new ArrayList<>(), Crust.HANDTOSSED, Size.SMALL);
+        BuildYourOwn byopizza = new BuildYourOwn(new ArrayList<>(), Crust.PAN, Size.SMALL);
         return byopizza;
     }
 

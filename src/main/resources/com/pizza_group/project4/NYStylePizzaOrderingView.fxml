@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="683.0" prefWidth="797.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pizza_group.project4.NYStylePizzaController">
+<AnchorPane prefHeight="683.0" prefWidth="797.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pizza_group.project4.NYStylePizzaController">
    <children>
       <Text layoutX="37.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New York Style Pizza" wrappingWidth="439.13671875">
          <font>
@@ -52,7 +46,7 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="crustOutput" layoutX="124.0" layoutY="243.0" />
+      <TextField fx:id="crustOutput" editable="false" layoutX="124.0" layoutY="243.0" />
       <Text layoutX="72.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Available Toppings:" textAlignment="CENTER" wrappingWidth="231.0">
          <font>
             <Font size="18.0" />
@@ -80,7 +74,7 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="pizzaPriceOutput" layoutX="175.0" layoutY="552.0" prefHeight="25.0" prefWidth="127.0" />
+      <TextField fx:id="pizzaPriceOutput" editable="false" layoutX="175.0" layoutY="552.0" prefHeight="25.0" prefWidth="127.0" />
       <Button fx:id="addPizzaToOrder" layoutX="459.0" layoutY="552.0" mnemonicParsing="false" onAction="#addToOrder" prefHeight="25.0" prefWidth="231.0" text="Add to Order" />
       <ImageView fx:id="pizzaImage" fitHeight="202.0" fitWidth="286.0" layoutX="491.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" />
    </children>
