@@ -20,10 +20,6 @@ public class ChicagoStylePizzaController {
     @FXML
     private RadioButton smallPizza;
     @FXML
-    private RadioButton mediumPizza;
-    @FXML
-    private RadioButton largePizza;
-    @FXML
     private TextField crustOutput;
     @FXML
     private ListView availableToppings;
@@ -35,8 +31,6 @@ public class ChicagoStylePizzaController {
     private Button addToppingButton;
     @FXML
     private Button removeSelectedTopping;
-    @FXML
-    private Button addPizzaToOrder;
     @FXML
     private ImageView pizzaImage;
     private PizzaFactory pizza = new ChicagoPizza();
@@ -92,8 +86,7 @@ public class ChicagoStylePizzaController {
      * Sets certain elements to appropriate state for flavors BBQChicken, Meatzza, and Deluxe.
      */
     public void defaultSettings() {
-        ObservableList<String> newTopping = FXCollections.observableArrayList();
-        selectedToppings.setItems(newTopping);
+        selectedToppings.getItems().clear();
         addToppingButton.setDisable(true);
         removeSelectedTopping.setDisable(true);
         pizzaSizeSelection.selectToggle(smallPizza);
